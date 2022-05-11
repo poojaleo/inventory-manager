@@ -1,0 +1,27 @@
+Resources:
+  ProductsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: "companyName"
+          AttributeType: "S"
+        - AttributeName: "sku"
+          AttributeType: "S"
+        - AttributeName: "isActive"
+          AttributeType: "S"
+      KeySchema:
+        - AttributeName: "companyName"
+          KeyType: "HASH"
+        - AttributeName: "sku"
+          KeyType: "RANGE"
+      BillingMode: PAY_PER_REQUEST
+      TableName: "Products"
+      GlobalSecondaryIndexes:
+        - IndexName: "isActiveIndex"
+          KeySchema:
+            - AttributeName: "companyName"
+              KeyType: "HASH"
+            - AttributeName: "isActive"
+              KeyType: "RANGE"
+          Projection:
+            ProjectionType: "ALL"

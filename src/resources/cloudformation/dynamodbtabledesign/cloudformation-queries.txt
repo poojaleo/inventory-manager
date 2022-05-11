@@ -1,0 +1,7 @@
+aws cloudformation create-stack --region us-west-2 --stack-name dynamodbtabledesign-productstable01 --template-body file://src/resources/cloudformation/dynamodbtabledesign/Products.yaml --capabilities CAPABILITY_IAM
+
+aws cloudformation create-stack --region us-west-2 --stack-name dynamodbtabledesign-companiestable01 --template-body file://src/resources/cloudformation/dynamodbtabledesign/Companies.yaml --capabilities CAPABILITY_IAM
+
+aws cloudformation create-stack --region us-west-2 --stack-name dynamodbtabledesign-shipmentstable01 --template-body file://src/resources/cloudformation/dynamodbtabledesign/Shipments.yaml --capabilities CAPABILITY_IAM
+
+aws cloudformation update-stack --region us-west-2 --stack-name dynamodbtabledesign-productstable01 --template-body file://src/resources/cloudformation/dynamodbtabledesign/Products.yaml --capabilities CAPABILITY_IAM
