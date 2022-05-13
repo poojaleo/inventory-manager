@@ -21,7 +21,7 @@ public class ShipmentDao {
         Shipment shipment = mapper.load(Shipment.class, companyName, shipmentId);
 
         if(shipment == null) {
-            throw new ShipmentNotFoundException("Shipment not found for id: " + shipmentId);
+            throw new ShipmentNotFoundException("ShipmentNotFound: Shipment not found for id: " + shipmentId);
         }
 
         return shipment;

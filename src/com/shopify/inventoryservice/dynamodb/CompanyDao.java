@@ -26,7 +26,7 @@ public class CompanyDao {
 
         if(company == null) {
             throw new CompanyNotFoundException(String.format(
-                    "CompanyNotFound - Could not find user with company name: %s", companyName));
+                    "CompanyNotFound - Could not find company with company name: %s", companyName));
         }
 
         return company;

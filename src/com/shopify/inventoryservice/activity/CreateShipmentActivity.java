@@ -9,6 +9,7 @@ import com.shopify.inventoryservice.dynamodb.ShipmentDao;
 import com.shopify.inventoryservice.dynamodb.table.Product;
 import com.shopify.inventoryservice.dynamodb.table.Shipment;
 import com.shopify.inventoryservice.dynamodb.table.ShipmentStatus;
+import com.shopify.inventoryservice.exceptions.ProductNotFoundException;
 import com.shopify.inventoryservice.models.ShipmentModel;
 import com.shopify.inventoryservice.models.request.CreateShipmentRequest;
 import com.shopify.inventoryservice.models.response.CreateShipmentResponse;
@@ -59,6 +60,8 @@ public class CreateShipmentActivity implements RequestHandler<CreateShipmentRequ
                 product.setQuantity(currentQuantity - quantityToReduce);
                 productDao.saveProduct(product);
             }
+        } catch (ProductNotFoundException productNotFoundException) {
+              throw productNotFoundException;
         } catch (Exception exception) {
             throw exception;
         }

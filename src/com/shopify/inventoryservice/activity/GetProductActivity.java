@@ -35,7 +35,7 @@ public class GetProductActivity implements RequestHandler<GetProductRequest, Get
         try {
             product = productDao.getActiveProduct(getProductRequest.getCompanyName(), getProductRequest.getSku());
         } catch (ProductNotFoundException productNotFoundException) {
-            throw new ProductNotFoundException("No active product found for sku: " + getProductRequest.getSku());
+            throw new ProductNotFoundException("ProductNotFound: No active product found for sku: " + getProductRequest.getSku());
         }
 
         ProductModel productModel = productModelConverter.toProductModel(product);

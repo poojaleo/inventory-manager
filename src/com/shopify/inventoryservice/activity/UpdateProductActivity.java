@@ -40,10 +40,10 @@ public class UpdateProductActivity implements RequestHandler<UpdateProductReques
         }
 
         if(updateProductRequest.getQuantity() < 0)
-            throw new InvalidAttributeValueException("Product Quantity cannot be less than 0");
+            throw new InvalidAttributeValueException("Invalid: Product Quantity cannot be less than 0");
 
         if(updateProductRequest.getCost().doubleValue() < 0)
-            throw new InvalidAttributeValueException("Product Cost cannot be less than 0");
+            throw new InvalidAttributeValueException("Invalid: Product Cost cannot be less than 0");
 
         product.setName(updateProductRequest.getName());
         product.setDescription(updateProductRequest.getDescription());

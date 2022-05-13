@@ -50,12 +50,12 @@ public class CreateCompanyActivity implements RequestHandler<CreateCompanyReques
         try {
             companyExistCheck = companyDao.getCompany(createCompanyRequest.getCompanyName());
         } catch (CompanyNotFoundException exception) {
-            lambdaLogger.log("Username does not exist. New company creation in progress");
+            lambdaLogger.log("CompanyName does not exist. New company creation in progress");
         }
 
         if(companyExistCheck != null) {
             throw new CompanyNameAlreadyExistsException(
-                    String.format("Company with companyName: %s already exists", createCompanyRequest.getCompanyName()));
+                    String.format("Already Exists: Company with companyName: %s already exists", createCompanyRequest.getCompanyName()));
         }
 
         Company company = Company.builder()

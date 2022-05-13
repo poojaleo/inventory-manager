@@ -32,25 +32,10 @@ public class CreateProductActivity implements RequestHandler<CreateProductReques
         lambdaLogger.log("Received Create Product Request for company:" + createProductRequest.getCompanyName());
 
         if(createProductRequest.getQuantity() < 0)
-            throw new InvalidAttributeValueException("Product Quantity cannot be less than 0");
+            throw new InvalidAttributeValueException("Invalid: Product Quantity cannot be less than 0");
 
         if(createProductRequest.getCost().doubleValue() < 0)
-            throw new InvalidAttributeValueException("Product Cost cannot be less than 0");
-
-        /*
-        Company companyExistCheck = null;
-
-        try {
-            companyExistCheck = companyDao.getCompany(createCompanyRequest.getCompanyName());
-        } catch (CompanyNotFoundException exception) {
-            lambdaLogger.log("Username does not exist. New company creation in progress");
-        }
-
-        if(companyExistCheck != null) {
-            throw new CompanyNameAlreadyExistsException(
-                    String.format("Company with companyName: %s already exists", createCompanyRequest.getCompanyName()));
-        }
-         */
+            throw new InvalidAttributeValueException("Invalid: Product Cost cannot be less than 0");
 
         Product productExistCheck = null;
 
@@ -61,7 +46,7 @@ public class CreateProductActivity implements RequestHandler<CreateProductReques
         }
 
         if(productExistCheck != null) {
-            throw new ProductAlreadyExistsException(String.format("SkU with skuId: %s already exists",
+            throw new ProductAlreadyExistsException(String.format("Already Exists: Product with skuId: %s already exists",
                     createProductRequest.getSku()));
         }
 
