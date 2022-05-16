@@ -10,7 +10,7 @@ const Login = (props) => {
     const [companyName, setCompanyName] = useState('');
     const [password, setPassword] = useState('');
     const [validPassword, setValidPassword] = useState(false);
-    const [message, setMessage] = useState('');
+    const [consoleMessage, setConsoleMessage] = useState('');
     const navigate = useNavigate();
     const baseURL = "https://4gybudb0ui.execute-api.us-west-2.amazonaws.com/inventory-manager/";
 
@@ -40,6 +40,7 @@ const Login = (props) => {
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
+        setConsoleMessage("Signing in....");
         console.log("Signing in.....")
         const url = `${baseURL}/company/${companyName}?password=${password}`;
 
@@ -50,10 +51,11 @@ const Login = (props) => {
             navigate('/inventory');
         }).catch(error => {
             console.log(error.message);
-            setMessage("Looks like there is an issue with your username or password. " +
+            setConsoleMessage("Looks like there is an issue with your username or password. " +
                 "Please enter valid credentials");
         })
     }
+
 
     return (
 
@@ -78,7 +80,7 @@ const Login = (props) => {
                     <Button>Login</Button>
                 </Form>
                 <div>
-                    {message}
+                    {consoleMessage}
                 </div>
                 <div className={"noAccount"}>
                     <h6>Do not have an account. <SignupButton />

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.shopify.inventoryservice.activity.CreateCompanyActivityTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2022-05-14T00:27:28" hostname="Poojas-MacBook-Pro.local" time="0.04">
+  <properties/>
+  <testcase name="handleRequest_createsCompanyNameAlreadyExists_throwsCompanyNameAlreadyExistsException()" classname="com.shopify.inventoryservice.activity.CreateCompanyActivityTest" time="0.01"/>
+  <testcase name="handleRequest_createsCompanyWithInvalidPassword_throwsInvalidAttributeValueException()" classname="com.shopify.inventoryservice.activity.CreateCompanyActivityTest" time="0.003"/>
+  <testcase name="handleRequest_createValidCompany_returnsValidCreateCompanyResponse()" classname="com.shopify.inventoryservice.activity.CreateCompanyActivityTest" time="0.01"/>
+  <testcase name="handleRequest_createsCompanyWithInvalidEmailAddress_throwsInvalidAttributeValueException()" classname="com.shopify.inventoryservice.activity.CreateCompanyActivityTest" time="0.003"/>
+  <system-out><![CDATA[Received Create Company Requests for companyName: Dunder Mifflin
+Received Create Company Requests for companyName: Dunder Mifflin
+Received Create Company Requests for companyName: Dunder Mifflin
+CompanyName does not exist. New company creation in progress
+Received Create Company Requests for companyName: Dunder Mifflin
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

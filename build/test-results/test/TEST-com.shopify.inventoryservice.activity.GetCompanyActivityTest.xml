@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.shopify.inventoryservice.activity.GetCompanyActivityTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-05-14T00:27:28" hostname="Poojas-MacBook-Pro.local" time="0.112">
+  <properties/>
+  <testcase name="handleRequest_companyInDatabase_returnsGetCompanyResponse()" classname="com.shopify.inventoryservice.activity.GetCompanyActivityTest" time="0.106"/>
+  <testcase name="handleRequest_companyNotInDatabase_throwsCompanyNotFoundException()" classname="com.shopify.inventoryservice.activity.GetCompanyActivityTest" time="0.004"/>
+  <system-out><![CDATA[Received Get Company Request for company name: Dunder Mifflin
+Received Get Company Request for company name: Mifflin
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

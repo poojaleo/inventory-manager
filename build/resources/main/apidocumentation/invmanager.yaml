@@ -521,8 +521,6 @@ components:
     CreateProductRequest:
       type: object
       properties:
-        companyName:
-          type: string
         sku:
           type: string
         name:
@@ -532,7 +530,7 @@ components:
         quantity:
           type: integer
         cost:
-          type: integer
+          type: number
     ProductResponse:
       type: object
       properties:
@@ -547,7 +545,7 @@ components:
         quantity:
           type: integer
         cost:
-          type: integer
+          type: number
         isActive:
           type: boolean
         deleteComments:
@@ -595,7 +593,7 @@ components:
         quantity:
           type: integer
         cost:
-          type: integer
+          type: number
     UpdateShipmentRequest:
       type: object
       properties:

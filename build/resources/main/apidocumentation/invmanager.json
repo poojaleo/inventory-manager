@@ -797,9 +797,6 @@
       "CreateProductRequest": {
         "type": "object",
         "properties": {
-          "companyName": {
-            "type": "string"
-          },
           "sku": {
             "type": "string"
           },
@@ -813,7 +810,7 @@
             "type": "integer"
           },
           "cost": {
-            "type": "integer"
+            "type": "number"
           }
         }
       },
@@ -836,7 +833,7 @@
             "type": "integer"
           },
           "cost": {
-            "type": "integer"
+            "type": "number"
           },
           "isActive": {
             "type": "boolean"
@@ -910,7 +907,7 @@
             "type": "integer"
           },
           "cost": {
-            "type": "integer"
+            "type": "number"
           }
         }
       },
