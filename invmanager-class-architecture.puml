@@ -11,8 +11,6 @@ class Company {
 + {static} Builder builder()
 }
 
-
-
 class CreateCompanyActivity {
 - companyDao : CompanyDao
 - companyModelConverter : CompanyModelConverter
@@ -95,10 +93,79 @@ class GetProductRequest {
 + {static} Builder builder()
 }
 
+class GetAllActiveProductsActivity {
+- productDao : ProductDao
+- productModelConverter : ProductModelConverter
++ GetAllActiveProductResponse handleRequest(GetAllActiveProductRequest,Context)
+}
+
+class GetAllActiveProductRequest {
+- companyName : String
++ {static} Builder builder()
+}
+
+class GetAllInactiveProductsActivity {
+- productDao : ProductDao
+- productModelConverter : ProductModelConverter
++ GetAllInactiveProductResponse handleRequest(GetAllInactiveProductRequest,Context)
+}
+
+class GetAllInactiveProductRequest {
+- companyName : String
++ {static} Builder builder()
+}
+
+class UpdateProductActivity {
+- productDao : ProductDao
+- productModelConverter : ProductModelConverter
++ UpdateProductResponse handleRequest(UpdateProductRequest,Context)
+}
+
+class UpdateProductRequest {
+- companyName : String
+- sku : String
+- name : String
+- description : String
+- quantity : int
+- cost : BigDecimal
++ {static} Builder builder()
+}
+
+class DeleteProductRequest {
+- companyName : String
+- sku : String
+- deleteComments : String
++ {static} Builder builder()
+}
+
+class DeleteProductActivity {
+- productDao : ProductDao
+- productModelConverter : ProductModelConverter
++ DeleteProductResponse handleRequest(DeleteProductRequest,Context)
+}
+
+class UndeleteProductActivity {
+- productDao : ProductDao
+- productModelConverter : ProductModelConverter
++ UndeleteProductResponse handleRequest(UndeleteProductRequest,Context)
+}
+
+
+class UndeleteProductRequest {
+- companyName : String
+- sku : String
++ {static} Builder builder()
+}
+
 RequestHandler <|.. CreateCompanyActivity
 RequestHandler <|.. GetCompanyActivity
 RequestHandler <|.. CreateProductActivity
 RequestHandler <|.. GetProductActivity
+RequestHandler <|.. GetAllActiveProductsActivity
+RequestHandler <|.. GetAllInactiveProductsActivity
+RequestHandler <|.. UpdateProductActivity
+RequestHandler <|.. DeleteProductActivity
+RequestHandler <|.. UndeleteProductActivity
 CreateCompanyActivity *-- CompanyDao
 CreateCompanyActivity *-- CreateCompanyRequest
 GetCompanyActivity *-- GetCompanyRequest
@@ -108,10 +175,20 @@ CreateProductActivity *-- ProductDao
 CreateProductActivity *-- CreateProductRequest
 GetProductActivity *-- ProductDao
 GetProductActivity *-- GetProductRequest
+GetAllActiveProductsActivity *-- ProductDao
+GetAllActiveProductsActivity *-- GetAllActiveProductRequest
+GetAllInactiveProductsActivity *-- ProductDao
+GetAllInactiveProductsActivity *-- GetAllInactiveProductRequest
+UpdateProductActivity *-- ProductDao
+UpdateProductActivity *-- UpdateProductRequest
+DeleteProductActivity *-- ProductDao
+DeleteProductActivity *-- DeleteProductRequest
+UndeleteProductActivity *-- ProductDao
+UndeleteProductActivity *-- UndeleteProductRequest
 ProductDao *-- Product
 newpage
 
-Title: Results
+Title: Responses
 
 class CompanyModel {
 - companyName : String
@@ -147,7 +224,43 @@ class CreateProductResponse {
 + {static} Builder builder()
 }
 
+class GetProductResponse {
+- productModel : ProductModel
++ {static} Builder builder()
+}
+
+class GetAllActiveProductResponse {
+- activeProductsList : List<ProductModel>
++ {static} Builder builder()
+}
+
+class GetAllInactiveProductResponse {
+- inactiveProductsList : List<ProductModel>
++ {static} Builder builder()
+}
+
+class UpdateProductResponse {
+- productModel : ProductModel
++ {static} Builder builder()
+}
+
+class DeleteProductResponse {
+- productModel : ProductModel
++ {static} Builder builder()
+}
+
+class UndeleteProductResponse {
+- productModel : ProductModel
++ {static} Builder builder()
+}
+
 CreateCompanyResponse *-- CompanyModel
 GetCompanyResponse *-- CompanyModel
 CreateProductResponse *-- ProductModel
+GetProductResponse *-- ProductModel
+GetAllActiveProductResponse *-- ProductModel
+GetAllInactiveProductResponse *-- ProductModel
+UpdateProductResponse *-- ProductModel
+DeleteProductResponse *-- ProductModel
+UndeleteProductResponse *-- ProductModel
 @enduml
