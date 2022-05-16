@@ -1,0 +1,866 @@
+@startuml
+
+class com.shopify.inventoryservice.models.response.DeleteProductResponse {
+- ProductModel productModel
++ ProductModel getProductModel()
++ void setProductModel(ProductModel)
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.response.DeleteProductResponse.Builder {
+- ProductModel productModel
++ Builder withProductModel(ProductModel)
++ DeleteProductResponse build()
+}
+class com.shopify.inventoryservice.activity.UndeleteProductActivity {
++ ProductDao productDao
++ ProductModelConverter productModelConverter
++ UndeleteProductResponse handleRequest(UndeleteProductRequest,Context)
+}
+class com.shopify.inventoryservice.dynamodb.CompanyDao {
+- DynamoDBMapper mapper
++ Company getCompany(String)
++ Company saveCompany(Company)
+}
+class com.shopify.inventoryservice.dynamodb.table.Shipment {
+- String companyName
+- String shipmentId
+- String createdAt
+- String shippingAddress
+- ShipmentStatus status
+- String trackingNumber
+- Map<String,Integer> productsShipped
++ String getCompanyName()
++ void setCompanyName(String)
++ String getShipmentId()
++ void setShipmentId(String)
++ String getCreatedAt()
++ void setCreatedAt(String)
++ String getShippingAddress()
++ void setShippingAddress(String)
++ ShipmentStatus getStatus()
++ void setStatus(ShipmentStatus)
++ String getTrackingNumber()
++ void setTrackingNumber(String)
++ Map<String,Integer> getProductsShipped()
++ void setProductsShipped(Map<String,Integer>)
++ boolean equals(Object)
++ int hashCode()
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.dynamodb.table.Shipment.Builder {
+- String companyName
+- String shipmentId
+- String createdAt
+- String shippingAddress
+- ShipmentStatus status
+- String trackingNumber
+- Map<String,Integer> productsShipped
++ Builder withCompanyName(String)
++ Builder withShipmentId(String)
++ Builder withCreatedAt(String)
++ Builder withShippingAddress(String)
++ Builder withStatus(ShipmentStatus)
++ Builder withTrackingNumber(String)
++ Builder withProductsShipped(Map<String,Integer>)
++ Shipment build()
+}
+class com.shopify.inventoryservice.models.request.UpdateProductRequest {
+- String companyName
+- String sku
+- String name
+- String description
+- int quantity
+- BigDecimal cost
++ String getCompanyName()
++ void setCompanyName(String)
++ String getSku()
++ void setSku(String)
++ String getName()
++ void setName(String)
++ String getDescription()
++ void setDescription(String)
++ int getQuantity()
++ void setQuantity(int)
++ BigDecimal getCost()
++ void setCost(BigDecimal)
++ boolean equals(Object)
++ int hashCode()
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.request.UpdateProductRequest.Builder {
+- String companyName
+- String sku
+- String name
+- String description
+- int quantity
+- BigDecimal cost
++ Builder withCompanyName(String)
++ Builder withSku(String)
++ Builder withName(String)
++ Builder withDescription(String)
++ Builder withQuantity(int)
++ Builder withCost(BigDecimal)
++ UpdateProductRequest build()
+}
+class com.shopify.inventoryservice.activity.CreateCompanyActivity {
+- CompanyDao companyDao
+- CompanyModelConverter companyModelConverter
++ CreateCompanyResponse handleRequest(CreateCompanyRequest,Context)
+}
+class com.shopify.inventoryservice.models.response.CreateProductResponse {
+- ProductModel productModel
++ ProductModel getProductModel()
++ void setProductModel(ProductModel)
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.response.CreateProductResponse.Builder {
+- ProductModel productModel
++ Builder withProductModel(ProductModel)
++ CreateProductResponse build()
+}
+
+class com.shopify.inventoryservice.models.response.GetShipmentResponse {
+- ShipmentModel shipmentModel
++ ShipmentModel getShipmentModel()
++ void setShipmentModel(ShipmentModel)
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.response.GetShipmentResponse.Builder {
+- ShipmentModel shipmentModel
++ Builder withShipmentModel(ShipmentModel)
++ GetShipmentResponse build()
+}
+class com.shopify.inventoryservice.models.request.DeleteProductRequest {
+- String companyName
+- String sku
+- String deleteComments
++ String getCompanyName()
++ void setCompanyName(String)
++ String getSku()
++ void setSku(String)
++ String getDeleteComments()
++ void setDeleteComments(String)
++ boolean equals(Object)
++ int hashCode()
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.request.DeleteProductRequest.Builder {
+- String companyName
+- String sku
+- String deleteComments
++ Builder withCompanyName(String)
++ Builder withSku(String)
++ Builder withDeleteComments(String)
++ DeleteProductRequest build()
+}
+class com.shopify.inventoryservice.models.request.CreateCompanyRequest {
+- String companyName
+- String emailAddress
+- String password
++ String getCompanyName()
++ void setCompanyName(String)
++ String getEmailAddress()
++ void setEmailAddress(String)
++ String getPassword()
++ void setPassword(String)
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.request.CreateCompanyRequest.Builder {
+- String companyName
+- String emailAddress
+- String password
++ Builder withCompanyName(String)
++ Builder withEmailAddress(String)
++ Builder withPassword(String)
++ CreateCompanyRequest build()
+}
+
+class com.shopify.inventoryservice.activity.GetCompanyActivity {
+- CompanyDao companyDao
+- CompanyModelConverter companyModelConverter
++ GetCompanyResponse handleRequest(GetCompanyRequest,Context)
+}
+class com.shopify.inventoryservice.models.response.GetAllActiveProductResponse {
+- List<ProductModel> activeProductsList
++ List<ProductModel> getActiveProductsList()
++ void setActiveProductsList(List<ProductModel>)
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.response.GetAllActiveProductResponse.Builder {
+- List<ProductModel> activeProductsList
++ Builder withActiveProductsList(List<ProductModel>)
++ GetAllActiveProductResponse build()
+}
+class com.shopify.inventoryservice.models.response.UpdateProductResponse {
+- ProductModel productModel
++ ProductModel getProductModel()
++ void setProductModel(ProductModel)
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.response.UpdateProductResponse.Builder {
+- ProductModel productModel
++ Builder withProductModel(ProductModel)
++ UpdateProductResponse build()
+}
+class com.shopify.inventoryservice.models.ProductModel {
+- String companyName
+- String sku
+- String name
+- String description
+- int quantity
+- BigDecimal cost
+- boolean isActive
+- String deleteComment
++ String getCompanyName()
++ void setCompanyName(String)
++ String getSku()
++ void setSku(String)
++ String getName()
++ void setName(String)
++ String getDescription()
++ void setDescription(String)
++ int getQuantity()
++ void setQuantity(int)
++ BigDecimal getCost()
++ void setCost(BigDecimal)
++ boolean isActive()
++ void setActive(boolean)
++ String getDeleteComment()
++ void setDeleteComment(String)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.ProductModel.Builder {
+- String companyName
+- String sku
+- String name
+- String description
+- int quantity
+- BigDecimal cost
+- boolean isActive
+- String deleteComment
++ Builder withCompanyName(String)
++ Builder withSku(String)
++ Builder withName(String)
++ Builder withDescription(String)
++ Builder withQuantity(int)
++ Builder withCost(BigDecimal)
++ Builder withIsActive(Boolean)
++ Builder withDeleteComment(String)
++ ProductModel build()
+}
+class com.shopify.inventoryservice.exceptions.ProductNotFoundException {
+- {static} long serialVersionUID
+}
+class com.shopify.inventoryservice.models.ShipmentModel {
+- String companyName
+- String shipmentId
+- String createdAt
+- String shippingAddress
+- ShipmentStatus status
+- String trackingNumber
+- Map<String,Integer> productsShipped
++ String getCompanyName()
++ void setCompanyName(String)
++ String getShipmentId()
++ void setShipmentId(String)
++ String getCreatedAt()
++ void setCreatedAt(String)
++ String getShippingAddress()
++ void setShippingAddress(String)
++ ShipmentStatus getStatus()
++ void setStatus(ShipmentStatus)
++ String getTrackingNumber()
++ void setTrackingNumber(String)
++ Map<String,Integer> getProductsShipped()
++ void setProductsShipped(Map<String,Integer>)
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.ShipmentModel.Builder {
+- String companyName
+- String shipmentId
+- String createdAt
+- String shippingAddress
+- ShipmentStatus status
+- String trackingNumber
+- Map<String,Integer> productsShipped
++ Builder withCompanyName(String)
++ Builder withShipmentId(String)
++ Builder withCreatedAt(String)
++ Builder withShippingAddress(String)
++ Builder withStatus(ShipmentStatus)
++ Builder withTrackingNumber(String)
++ Builder withProductsShipped(Map<String,Integer>)
++ ShipmentModel build()
+}
+class com.shopify.inventoryservice.converters.CompanyModelConverter {
++ CompanyModel toCompanyModel(Company)
+}
+class com.shopify.inventoryservice.models.response.UndeleteProductResponse {
+- ProductModel productModel
++ ProductModel getProductModel()
++ void setProductModel(ProductModel)
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.response.UndeleteProductResponse.Builder {
+- ProductModel productModel
++ Builder withProductModel(ProductModel)
++ UndeleteProductResponse build()
+}
+class com.shopify.inventoryservice.activity.GetAllShipmentActivity {
+- ShipmentDao shipmentDao
+- ShipmentModelConverter shipmentModelConverter
++ GetAllShipmentResponse handleRequest(GetAllShipmentRequest,Context)
+}
+class com.shopify.inventoryservice.dynamodb.table.Company {
+- String companyName
+- String createdAt
+- String emailAddress
+- String password
++ String getCompanyName()
++ void setCompanyName(String)
++ String getCreatedAt()
++ void setCreatedAt(String)
++ String getEmailAddress()
++ void setEmailAddress(String)
++ String getPassword()
++ void setPassword(String)
++ boolean equals(Object)
++ int hashCode()
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.dynamodb.table.Company.Builder {
+- String companyName
+- String createdAt
+- String emailAddress
+- String password
++ Builder withCompanyName(String)
++ Builder withCreatedAt(String)
++ Builder withEmailAddress(String)
++ Builder withPassword(String)
++ Company build()
+}
+class com.shopify.inventoryservice.models.request.CreateProductRequest {
+- String companyName
+- String sku
+- String name
+- String description
+- int quantity
+- BigDecimal cost
++ String getCompanyName()
++ void setCompanyName(String)
++ String getSku()
++ void setSku(String)
++ String getName()
++ void setName(String)
++ String getDescription()
++ void setDescription(String)
++ int getQuantity()
++ void setQuantity(int)
++ BigDecimal getCost()
++ void setCost(BigDecimal)
++ boolean equals(Object)
++ int hashCode()
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.request.CreateProductRequest.Builder {
+- String companyName
+- String sku
+- String name
+- String description
+- int quantity
+- BigDecimal cost
++ Builder withCompanyName(String)
++ Builder withSku(String)
++ Builder withName(String)
++ Builder withDescription(String)
++ Builder withQuantity(int)
++ Builder withCost(BigDecimal)
++ CreateProductRequest build()
+}
+
+class com.shopify.inventoryservice.exceptions.CompanyNameAlreadyExistsException {
+- {static} long serialVersionUID
+}
+class com.shopify.inventoryservice.activity.GetShipmentActivity {
+- ShipmentDao shipmentDao
+- ShipmentModelConverter shipmentModelConverter
++ GetShipmentResponse handleRequest(GetShipmentRequest,Context)
+}
+
+class com.shopify.inventoryservice.utils.InventoryManagerServiceUtility {
+- {static} Pattern VALID_EMAIL_PATTERN
+- {static} Pattern VALID_PASSWORD_PATTERN
++ {static} int ID_LENGTH
++ {static} boolean isValidEmailAddress(String)
++ {static} boolean isValidPassword(String)
++ {static} String generateId()
+}
+class com.shopify.inventoryservice.models.request.GetAllShipmentRequest {
+- String companyName
++ String getCompanyName()
++ void setCompanyName(String)
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.request.GetAllShipmentRequest.Builder {
+- String companyName
++ Builder withCompanyName(String)
++ GetAllShipmentRequest build()
+}
+
+class com.shopify.inventoryservice.models.response.GetCompanyResponse {
+- CompanyModel companyModel
++ CompanyModel getCompanyModel()
++ void setCompanyModel(CompanyModel)
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.response.GetCompanyResponse.Builder {
+- CompanyModel companyModel
++ Builder withCompanyModel(CompanyModel)
++ GetCompanyResponse build()
+}
+class com.shopify.inventoryservice.models.request.GetAllInactiveProductRequest {
+- String companyName
++ String getCompanyName()
++ void setCompanyName(String)
++ boolean equals(Object)
++ int hashCode()
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.request.GetAllInactiveProductRequest.Builder {
+- String companyName
++ Builder withCompanyName(String)
++ GetAllInactiveProductRequest build()
+}
+class com.shopify.inventoryservice.dynamodb.table.Product {
++ {static} String IS_ACTIVE_INDEX
+- String companyName
+- String sku
+- String name
+- String description
+- int quantity
+- BigDecimal cost
+- boolean isActive
+- String deleteComment
++ String getCompanyName()
++ void setCompanyName(String)
++ String getSku()
++ void setSku(String)
++ boolean isActive()
++ void setActive(boolean)
++ String getName()
++ void setName(String)
++ String getDescription()
++ void setDescription(String)
++ int getQuantity()
++ void setQuantity(int)
++ BigDecimal getCost()
++ void setCost(BigDecimal)
++ String getDeleteComment()
++ void setDeleteComment(String)
++ boolean equals(Object)
++ int hashCode()
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.dynamodb.table.Product.Builder {
+- String companyName
+- String sku
+- String name
+- String description
+- int quantity
+- BigDecimal cost
+- boolean isActive
+- String deleteComment
++ Builder withCompanyName(String)
++ Builder withSku(String)
++ Builder withName(String)
++ Builder withDescription(String)
++ Builder withQuantity(int)
++ Builder withCost(BigDecimal)
++ Builder withIsActive(Boolean)
++ Builder withDeleteComment(String)
++ Product build()
+}
+class com.shopify.inventoryservice.models.response.UpdateShipmentResponse {
+- ShipmentModel shipmentModel
++ ShipmentModel getShipmentModel()
++ void setShipmentModel(ShipmentModel)
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.response.UpdateShipmentResponse.Builder {
+- ShipmentModel shipmentModel
++ Builder withShipmentModel(ShipmentModel)
++ UpdateShipmentResponse build()
+}
+class com.shopify.inventoryservice.exceptions.ProductAlreadyExistsException {
+- {static} long serialVersionUID
+}
+
+class com.shopify.inventoryservice.exceptions.CompanyNotFoundException {
+- {static} long serialVersionUID
+}
+class com.shopify.inventoryservice.activity.GetAllInactiveProductsActivity {
++ ProductDao productDao
++ ProductModelConverter productModelConverter
++ GetAllInactiveProductResponse handleRequest(GetAllInactiveProductRequest,Context)
+}
+
+class com.shopify.inventoryservice.models.response.CreateCompanyResponse {
+- CompanyModel companyModel
++ CompanyModel getCompanyModel()
++ void setCompanyModel(CompanyModel)
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.response.CreateCompanyResponse.Builder {
+- CompanyModel companyModel
++ Builder withCompanyModel(CompanyModel)
++ CreateCompanyResponse build()
+}
+class com.shopify.inventoryservice.converters.ShipmentModelConverter {
++ ShipmentModel toShipmentModel(Shipment)
+}
+class com.shopify.inventoryservice.models.request.UpdateShipmentRequest {
+- String companyName
+- String shipmentId
+- String shippingAddress
+- ShipmentStatus status
+- String trackingNumber
++ String getCompanyName()
++ void setCompanyName(String)
++ String getShipmentId()
++ void setShipmentId(String)
++ String getShippingAddress()
++ void setShippingAddress(String)
++ ShipmentStatus getStatus()
++ void setStatus(ShipmentStatus)
++ String getTrackingNumber()
++ void setTrackingNumber(String)
++ boolean equals(Object)
++ int hashCode()
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.request.UpdateShipmentRequest.Builder {
+- String companyName
+- String shipmentId
+- String shippingAddress
+- ShipmentStatus status
+- String trackingNumber
++ Builder withCompanyName(String)
++ Builder withShipmentId(String)
++ Builder withShippingAddress(String)
++ Builder withStatus(ShipmentStatus)
++ Builder withTrackingNumber(String)
++ UpdateShipmentRequest build()
+}
+class com.shopify.inventoryservice.activity.DeleteProductActivity {
++ ProductDao productDao
++ ProductModelConverter productModelConverter
++ DeleteProductResponse handleRequest(DeleteProductRequest,Context)
+}
+class com.shopify.inventoryservice.models.CompanyModel {
+- String companyName
+- String createdAt
+- String emailAddress
++ String getCompanyName()
++ void setCompanyName(String)
++ String getCreatedAt()
++ void setCreatedAt(String)
++ String getEmailAddress()
++ void setEmailAddress(String)
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.CompanyModel.Builder {
+- String companyName
+- String createdAt
+- String emailAddress
++ Builder withCompanyName(String)
++ Builder withCreatedAt(String)
++ Builder withEmailAddress(String)
++ CompanyModel build()
+}
+class com.shopify.inventoryservice.exceptions.ShipmentNotFoundException {
+- {static} long serialVersionUID
+}
+class com.shopify.inventoryservice.dependency.DynamoDbClientProvider {
++ {static} AmazonDynamoDB getDynamoDBClient()
++ {static} AmazonDynamoDB getDynamoDBClient(Regions)
+}
+class com.shopify.inventoryservice.activity.UpdateProductActivity {
++ ProductDao productDao
++ ProductModelConverter productModelConverter
++ UpdateProductResponse handleRequest(UpdateProductRequest,Context)
+}
+class com.shopify.inventoryservice.models.request.GetCompanyRequest {
+- String companyName
+- String password
++ String getCompanyName()
++ void setCompanyName(String)
++ String getPassword()
++ void setPassword(String)
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.request.GetCompanyRequest.Builder {
+- String companyName
+- String password
++ Builder withCompanyName(String)
++ Builder withPassword(String)
++ GetCompanyRequest build()
+}
+
+class com.shopify.inventoryservice.models.request.UndeleteProductRequest {
+- String companyName
+- String sku
++ String getCompanyName()
++ void setCompanyName(String)
++ String getSku()
++ void setSku(String)
++ boolean equals(Object)
++ int hashCode()
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.request.UndeleteProductRequest.Builder {
+- String companyName
+- String sku
++ Builder withCompanyName(String)
++ Builder withSku(String)
++ UndeleteProductRequest build()
+}
+class com.shopify.inventoryservice.models.request.GetProductRequest {
+- String companyName
+- String sku
++ String getCompanyName()
++ void setCompanyName(String)
++ String getSku()
++ void setSku(String)
++ boolean equals(Object)
++ int hashCode()
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.request.GetProductRequest.Builder {
+- String companyName
+- String sku
++ Builder withCompanyName(String)
++ Builder withSku(String)
++ GetProductRequest build()
+}
+class com.shopify.inventoryservice.activity.GetAllActiveProductsActivity {
++ ProductDao productDao
++ ProductModelConverter productModelConverter
++ GetAllActiveProductResponse handleRequest(GetAllActiveProductRequest,Context)
+}
+class com.shopify.inventoryservice.activity.GetProductActivity {
++ ProductDao productDao
++ ProductModelConverter productModelConverter
++ GetProductResponse handleRequest(GetProductRequest,Context)
+}
+class com.shopify.inventoryservice.dependency.DaoModule {
++ DynamoDBMapper provideDynamoDBMapper()
+}
+class com.shopify.inventoryservice.models.response.CreateShipmentResponse {
+- ShipmentModel shipmentModel
++ ShipmentModel getShipmentModel()
++ void setShipmentModel(ShipmentModel)
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.response.CreateShipmentResponse.Builder {
+- ShipmentModel shipmentModel
++ Builder withShipmentModel(ShipmentModel)
++ CreateShipmentResponse build()
+}
+class com.shopify.inventoryservice.exceptions.InvalidPasswordException {
+- {static} long serialVersionUID
+}
+
+class com.shopify.inventoryservice.activity.CreateShipmentActivity {
+- ShipmentDao shipmentDao
+- ShipmentModelConverter shipmentModelConverter
+- ProductDao productDao
++ CreateShipmentResponse handleRequest(CreateShipmentRequest,Context)
+}
+class com.shopify.inventoryservice.activity.CreateProductActivity {
+- ProductDao productDao
+- ProductModelConverter productModelConverter
++ CreateProductResponse handleRequest(CreateProductRequest,Context)
+}
+class com.shopify.inventoryservice.dynamodb.ProductDao {
+- DynamoDBMapper mapper
++ {static} String PRODUCT_TABLE_NAME
++ Product getActiveProduct(String,String)
++ Product getInActiveProduct(String,String)
++ Product getProductActiveAndInactive(String,String)
++ List<Product> getAllActiveProducts(String)
++ List<Product> getAllInactiveProducts(String)
+- List<Product> getAllProducts(String,String)
++ Product saveProduct(Product)
+}
+class com.shopify.inventoryservice.models.response.GetAllInactiveProductResponse {
+- List<ProductModel> inactiveProductsList
++ List<ProductModel> getInactiveProductsList()
++ void setInactiveProductsList(List<ProductModel>)
++ boolean equals(Object)
++ int hashCode()
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.response.GetAllInactiveProductResponse.Builder {
+- List<ProductModel> inactiveProductsList
++ Builder withInActiveProductsList(List<ProductModel>)
++ GetAllInactiveProductResponse build()
+}
+class com.shopify.inventoryservice.models.request.GetShipmentRequest {
+- String companyName
+- String shipmentId
++ String getCompanyName()
++ void setCompanyName(String)
++ String getShipmentId()
++ void setShipmentId(String)
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.request.GetShipmentRequest.Builder {
+- String companyName
+- String shipmentId
++ Builder withCompanyName(String)
++ Builder withShipmentId(String)
++ GetShipmentRequest build()
+}
+class com.shopify.inventoryservice.models.request.CreateShipmentRequest {
+- String companyName
+- String shippingAddress
+- Map<String,Integer> productsShipped
++ String getCompanyName()
++ void setCompanyName(String)
++ String getShippingAddress()
++ void setShippingAddress(String)
++ Map<String,Integer> getProductsShipped()
++ void setProductsShipped(Map<String,Integer>)
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.request.CreateShipmentRequest.Builder {
+- String companyName
+- String shippingAddress
+- Map<String,Integer> productsShipped
++ Builder withCompanyName(String)
++ Builder withShippingAddress(String)
++ Builder withProductsShipped(Map<String,Integer>)
++ CreateShipmentRequest build()
+}
+
+class com.shopify.inventoryservice.converters.ProductModelConverter {
++ ProductModel toProductModel(Product)
+}
+class com.shopify.inventoryservice.models.response.GetProductResponse {
+- ProductModel productModel
++ ProductModel getProductModel()
++ void setProductModel(ProductModel)
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.response.GetProductResponse.Builder {
+- ProductModel productModel
++ Builder withProductModel(ProductModel)
++ GetProductResponse build()
+}
+interface com.shopify.inventoryservice.dependency.ServiceComponent {
+~ CreateCompanyActivity provideCreateCompanyActivity()
+~ GetCompanyActivity provideGetCompanyActivity()
+~ CreateProductActivity provideCreateProductActivity()
+~ GetProductActivity provideGetProductActivity()
+~ GetAllActiveProductsActivity provideGetAllActiveProductActivity()
+~ GetAllInactiveProductsActivity provideGetAllInactiveProductActivity()
+~ UpdateProductActivity provideUpdateProductActivity()
+~ DeleteProductActivity provideDeleteProductActivity()
+~ UndeleteProductActivity provideUndeleteProductActivity()
+~ CreateShipmentActivity provideCreateShipmentActivity()
+~ GetAllShipmentActivity provideGetAllShipmentActivity()
+~ GetShipmentActivity provideGetShipmentActivity()
+~ UpdateShipmentActivity provideUpdateShipmentActivity()
+}
+class com.shopify.inventoryservice.exceptions.InvalidAttributeValueException {
+- {static} long serialVersionUID
+}
+class com.shopify.inventoryservice.models.response.GetAllShipmentResponse {
+- List<ShipmentModel> shipmentModelList
++ List<ShipmentModel> getShipmentModelList()
++ void setShipmentModelList(List<ShipmentModel>)
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.response.GetAllShipmentResponse.Builder {
+- List<ShipmentModel> shipmentModelList
++ Builder withShipmentList(List<ShipmentModel>)
++ GetAllShipmentResponse build()
+}
+
+class com.shopify.inventoryservice.dynamodb.tableconverters.ShipmentMapTypeConverter {
++ String convert(Map<String,Integer>)
++ Map<String,Integer> unconvert(String)
+}
+class com.shopify.inventoryservice.activity.UpdateShipmentActivity {
+- ShipmentDao shipmentDao
+- ShipmentModelConverter shipmentModelConverter
++ UpdateShipmentResponse handleRequest(UpdateShipmentRequest,Context)
+}
+class com.shopify.inventoryservice.dynamodb.ShipmentDao {
+- DynamoDBMapper mapper
++ Shipment getShipment(String,String)
++ List<Shipment> getAllShipments(String)
++ Shipment saveShipment(Shipment)
+}
+class com.shopify.inventoryservice.models.request.GetAllActiveProductRequest {
+- String companyName
++ String getCompanyName()
++ void setCompanyName(String)
++ boolean equals(Object)
++ int hashCode()
++ {static} Builder builder()
+}
+class com.shopify.inventoryservice.models.request.GetAllActiveProductRequest.Builder {
+- String companyName
++ Builder withCompanyName(String)
++ GetAllActiveProductRequest build()
+}
+
+
+
+com.shopify.inventoryservice.models.response.DeleteProductResponse +.. com.shopify.inventoryservice.models.response.DeleteProductResponse.Builder
+com.shopify.inventoryservice.dynamodb.table.Shipment +.. com.shopify.inventoryservice.dynamodb.table.Shipment.Builder
+com.shopify.inventoryservice.models.request.UpdateProductRequest +.. com.shopify.inventoryservice.models.request.UpdateProductRequest.Builder
+com.shopify.inventoryservice.models.response.CreateProductResponse +.. com.shopify.inventoryservice.models.response.CreateProductResponse.Builder
+com.shopify.inventoryservice.models.response.GetShipmentResponse +.. com.shopify.inventoryservice.models.response.GetShipmentResponse.Builder
+com.shopify.inventoryservice.models.request.DeleteProductRequest +.. com.shopify.inventoryservice.models.request.DeleteProductRequest.Builder
+com.shopify.inventoryservice.models.request.CreateCompanyRequest +.. com.shopify.inventoryservice.models.request.CreateCompanyRequest.Builder
+com.shopify.inventoryservice.models.response.GetAllActiveProductResponse +.. com.shopify.inventoryservice.models.response.GetAllActiveProductResponse.Builder
+com.shopify.inventoryservice.models.response.UpdateProductResponse +.. com.shopify.inventoryservice.models.response.UpdateProductResponse.Builder
+com.shopify.inventoryservice.models.ProductModel +.. com.shopify.inventoryservice.models.ProductModel.Builder
+com.shopify.inventoryservice.exceptions.RuntimeException <|-- com.shopify.inventoryservice.exceptions.ProductNotFoundException
+com.shopify.inventoryservice.models.ShipmentModel +.. com.shopify.inventoryservice.models.ShipmentModel.Builder
+com.shopify.inventoryservice.models.response.UndeleteProductResponse +.. com.shopify.inventoryservice.models.response.UndeleteProductResponse.Builder
+com.shopify.inventoryservice.dynamodb.table.Company +.. com.shopify.inventoryservice.dynamodb.table.Company.Builder
+com.shopify.inventoryservice.models.request.CreateProductRequest +.. com.shopify.inventoryservice.models.request.CreateProductRequest.Builder
+
+com.shopify.inventoryservice.exceptions.RuntimeException <|-- com.shopify.inventoryservice.exceptions.CompanyNameAlreadyExistsException
+com.shopify.inventoryservice.models.request.GetAllShipmentRequest +.. com.shopify.inventoryservice.models.request.GetAllShipmentRequest.Builder
+
+com.shopify.inventoryservice.models.response.GetCompanyResponse +.. com.shopify.inventoryservice.models.response.GetCompanyResponse.Builder
+com.shopify.inventoryservice.models.request.GetAllInactiveProductRequest +.. com.shopify.inventoryservice.models.request.GetAllInactiveProductRequest.Builder
+com.shopify.inventoryservice.dynamodb.table.Product +.. com.shopify.inventoryservice.dynamodb.table.Product.Builder
+com.shopify.inventoryservice.models.response.UpdateShipmentResponse +.. com.shopify.inventoryservice.models.response.UpdateShipmentResponse.Builder
+com.shopify.inventoryservice.exceptions.RuntimeException <|-- com.shopify.inventoryservice.exceptions.ProductAlreadyExistsException
+com.shopify.inventoryservice.exceptions.RuntimeException <|-- com.shopify.inventoryservice.exceptions.CompanyNotFoundException
+com.shopify.inventoryservice.models.response.CreateCompanyResponse +.. com.shopify.inventoryservice.models.response.CreateCompanyResponse.Builder
+com.shopify.inventoryservice.models.request.UpdateShipmentRequest +.. com.shopify.inventoryservice.models.request.UpdateShipmentRequest.Builder
+com.shopify.inventoryservice.models.CompanyModel +.. com.shopify.inventoryservice.models.CompanyModel.Builder
+com.shopify.inventoryservice.exceptions.RuntimeException <|-- com.shopify.inventoryservice.exceptions.ShipmentNotFoundException
+com.shopify.inventoryservice.models.request.GetCompanyRequest +.. com.shopify.inventoryservice.models.request.GetCompanyRequest.Builder
+com.shopify.inventoryservice.models.request.UndeleteProductRequest +.. com.shopify.inventoryservice.models.request.UndeleteProductRequest.Builder
+com.shopify.inventoryservice.models.request.GetProductRequest +.. com.shopify.inventoryservice.models.request.GetProductRequest.Builder
+com.shopify.inventoryservice.models.response.CreateShipmentResponse +.. com.shopify.inventoryservice.models.response.CreateShipmentResponse.Builder
+com.shopify.inventoryservice.exceptions.RuntimeException <|-- com.shopify.inventoryservice.exceptions.InvalidPasswordException
+com.shopify.inventoryservice.models.response.GetAllInactiveProductResponse +.. com.shopify.inventoryservice.models.response.GetAllInactiveProductResponse.Builder
+com.shopify.inventoryservice.models.request.GetShipmentRequest +.. com.shopify.inventoryservice.models.request.GetShipmentRequest.Builder
+com.shopify.inventoryservice.models.request.CreateShipmentRequest +.. com.shopify.inventoryservice.models.request.CreateShipmentRequest.Builder
+com.shopify.inventoryservice.models.response.GetProductResponse +.. com.shopify.inventoryservice.models.response.GetProductResponse.Builder
+com.shopify.inventoryservice.exceptions.RuntimeException <|-- com.shopify.inventoryservice.exceptions.InvalidAttributeValueException
+com.shopify.inventoryservice.models.response.GetAllShipmentResponse +.. com.shopify.inventoryservice.models.response.GetAllShipmentResponse.Builder
+com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverter <|.. com.shopify.inventoryservice.dynamodb.tableconverters.ShipmentMapTypeConverter
+com.shopify.inventoryservice.models.request.GetAllActiveProductRequest +.. com.shopify.inventoryservice.models.request.GetAllActiveProductRequest.Builder
+@enduml
