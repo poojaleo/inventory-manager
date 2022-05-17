@@ -11,6 +11,8 @@ info:
     repository](https://github.com/poojaleo/inventory-manager)
   version: 1.0.0
   title: InventoryManager API
+servers:
+  - url: https://4gybudb0ui.execute-api.us-west-2.amazonaws.com/inventory-manager/
 paths:
   /company:
     post:
