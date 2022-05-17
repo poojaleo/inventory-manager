@@ -18,7 +18,7 @@ It also helps to create shipment orders and keep track of all shipments at one p
 
 Note: There is a 2-3 seconds latency to establish a connection. 
 
-### Project Walkthrough
+### Project Walk-through
 [Video link](https://www.loom.com/share/3fd04979bcce4ae8a5df0f73e11ad606)
 
 ### Technologies Used :
@@ -47,7 +47,7 @@ With Inventory Manager, you can also create shipments and easily monitor the sta
 9. Get Shipment
 10. Get list of shipments
 11. Signup with company name, email address and password
-12. Signin/Signout using company name and password
+12. Sign-in/Sign-out using company name and password
 
 ## 3. Use Cases
 
@@ -260,7 +260,7 @@ Returns the updated product.
 ### 6.14. Get All Shipment Endpoint
 * Accepts `GET` requests to `/company/:companyName/shipments`
 * Retrieves all shipments of a company with the given companyName
-- If company does not have any shipments, will returns an empty list
+- If company does not have any shipments, will return an empty list
 
 ![Get All Shipment Endpoint SD](src/resources/sequence-diagrams/GetAllShipmentActivity-SDImage.png)
 
