@@ -1,70 +1,87 @@
-# Getting Started with Create React App
+# Shopify Inventory Manager Design Document
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Inventory Manager
+Inventory is an effective way to manage all your inventory and shipping. It helps to keep track of all the active and inactive products.
+It also helps to create shipment orders and keep track of all shipments at one place.
 
-## Available Scripts
 
-In the project directory, you can run:
+### Live Project Preview:
+###### Deployed on AWS Amplify
+[Inventory Manager Application - Website](https://main.d2tsc03xo6nb5v.amplifyapp.com/)
 
-### `npm start`
+###### Deployed on Replit
+[Inventory Manager Application - Replit](https://inventorymanager-frontend.poojaleo.repl.co/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### For Testing, You can use dummy account to login
+    Username: Pepsico
+    Password: Pepsi@12345
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Note: There is a 2-3 seconds latency to establish a connection.
 
-### `npm test`
+### Technologies Used :
+* Java, DynamoDB, AWS S3, AWS Lambda, AWS API Gateway, React, Bootstrap, AWS Amplify (for hosting)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## API Documentation
+[InventoryManager API Documentation](http://invmanager-swagger.s3-website-us-west-2.amazonaws.com/#post-/company)
 
-### `npm run build`
+## 1. Problem Statement
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Managing inventory is one of the core requirements for a logistic business. Inventory Manager is application management service for
+companies such as logistics company to create products and keep track of all active and inactive products with quantity and cost.
+With Inventory Manager, you can also create shipments and easily monitor the state of all shipments at a glance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 2. Features Included
+1. Create product (inventory) items
+2. Update product
+3. Delete product with delete comments
+4. View list of active products
+5. View List of inactive products
+6. Undelete product
+7. Create shipment (adjust inventory)
+8. Update Shipment
+9. Get Shipment
+10. Get list of shipments
+11. Signup with company name, email address and password
+12. Signin/Signout using company name and password
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 3. Use Cases
 
-### `npm run eject`
+U1. *As a InventoryManager customer, I want to create my own account*
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+U2. *As a InventoryManager customer, I want to create new product*
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+U3. *As a InventoryManager customer, I want to update existing product (description, quantity, cost, name) *
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+U4. *As a InventoryManager customer, I want to delete a product with delete comments*
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+U5. *As a InventoryManager customer, I want to view all my inactive products*
 
-## Learn More
+U6. *As a InventoryManager customer, I want to undelete a product*
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+U7. *As a InventoryManager customer, I want to create shipment and my inventory should automatically be reduced*
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+U8. *As a InventoryManager customer, I want to update shipment (tracking number, address, status)*
 
-### Code Splitting
+U8. *As a InventoryManager customer, I want to update status of shipment using dropdown menu*
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+# 4. Architecture Overview
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Deployed a serverless app using DynamoDB, AWS Lambda & API Gateway with 13 endpoints to handle CRUD requests.
+•	Utilized Lambda Logger to maintain logs and to debug.
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![Architecture Overview](/Users/pooja/lambda/inventory-manager/src/resources/images/AWSArchitecture.png)
 
-### Advanced Configuration
+13 endpoints are
+( `CreateCompany`, `GetCompany`,  `CreateProduct`, `UpdateProduct`, `GetProduct`,
+`GetAllActiveProduct`, `GetAllInactiveProduct`,  `DeleteProduct`, `UndeleteProduct`,
+`CreateShipment`, `UpdateShipment`, `GetShipment`, `GetAllShipment`) that will handle the
+creation, updating, and retrieval of companies products and shipments.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+We will store Companies (users), Products, Shipments in DynamoDB database. 
 
-### Deployment
+# 5 Design Document
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+![Inventory Manager Design Document](https://github.com/poojaleo/inventory-manager#readme)
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
