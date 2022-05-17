@@ -1,10 +1,10 @@
-import {Container, FormSelect, Stack, Table} from "react-bootstrap";
+import {Container, Stack, Table} from "react-bootstrap";
 import {Input, Label} from "reactstrap";
 import SignoutButton from "../home/SignoutButton";
 import GoToInventoryButton from "../inventory/GoToInventoryButton";
 import React, {useEffect, useState} from "react";
 import AuthService from "../../services/AuthService";
-import {Button, Form, FormGroup, Modal} from "react-bootstrap";
+import {Button, Form, FormGroup} from "react-bootstrap";
 import axios from "axios";
 import UpdateShipmentModal from "./UpdateShipmentModal";
 import "./Shipping.css";

@@ -92,7 +92,7 @@ High Level overview of the project structure
 
 # 6. API
 
-## 6.1. Public Models
+### 6.1. Public Models
 
 To avoid sending direct database object to the user, every object is converted to a public model.
 This improves the security of the data stored in the database (DynamoDB).
@@ -131,6 +131,10 @@ Map<String, Integer> productsShipped;
 
 ```
 
+### Endpoints
+```
+BASE URL: https://4gybudb0ui.execute-api.us-west-2.amazonaws.com/inventory-manager/
+```
 ### 6.2. Get Company Endpoint
 
 * Accepts `GET` requests to `/company/:companyName`
@@ -297,4 +301,4 @@ productsShipped // string, MapConverter
 ```
 
 # 7. Test Cases
-Wrote 61 JUnit tests using mocking framework (Mockito).
+Wrote 61 JUnit tests using mocking framework (Mockito) to ensure reliability and improve scalability of the application.

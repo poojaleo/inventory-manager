@@ -1,8 +1,8 @@
-import {Button, Modal, Stack, Table, Form, FormGroup} from "react-bootstrap";
-import React, {useState} from "react";
+import {Button, Modal, Stack, Table} from "react-bootstrap";
+import React from "react";
 import AuthService from "../../services/AuthService";
 import axios from "axios";
-import {Input, Label} from "reactstrap";
+
 
 const InactiveProductsListModal = (show, handleClose, inactiveProducts) => {
     const baseURL = "https://4gybudb0ui.execute-api.us-west-2.amazonaws.com/inventory-manager/";
