@@ -276,6 +276,12 @@ paths:
           required: true
           schema:
             type: string
+        - name: deleteComments
+          in: query
+          description: delete comments, query parameter
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           description: Successful Operation

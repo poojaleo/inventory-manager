@@ -415,6 +415,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "deleteComments",
+            "in": "query",
+            "description": "delete comments, query parameter",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {

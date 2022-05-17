@@ -7,6 +7,7 @@ import {Input, Label} from "reactstrap";
 const DeleteInventoryModal = (show, handleClose, sku, deleteComments) => {
 
     const baseURL = "https://4gybudb0ui.execute-api.us-west-2.amazonaws.com/inventory-manager/";
+    deleteComments = ""
     let message = ""
 
     const deleteProduct = (event) => {
@@ -16,13 +17,10 @@ const DeleteInventoryModal = (show, handleClose, sku, deleteComments) => {
         message = "Deleting Product.....";
 
         event.preventDefault();
-        const url = `${baseURL}/company/${companyName}/products/${sku}`;
+        const url = `${baseURL}/company/${companyName}/products/${sku}?deleteComments=${deleteComments}`;
 
-        const requestBody = {
-            "deleteComments": deleteComments
-        }
 
-        axios.delete(url, requestBody).then(response => {
+        axios.delete(url).then(response => {
             console.log(response.data);
             handleClose();
             window.location.reload();
