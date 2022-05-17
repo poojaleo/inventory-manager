@@ -6,8 +6,11 @@ It also helps to create shipment orders and keep track of all shipments at one p
 
 
 ### Live Project Preview:
+###### Deployed on AWS Amplify
+[Inventory Manager Application - Website](https://main.d2tsc03xo6nb5v.amplifyapp.com/)
 
-[Inventory Manager Application](https://main.d2tsc03xo6nb5v.amplifyapp.com/)
+###### Deployed on Replit
+[Inventory Manager Application - Replit](https://inventorymanager-frontend.poojaleo.repl.co/)
 
 #### For Testing, You can use dummy account to login
     Username: Pepsico
