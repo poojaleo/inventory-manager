@@ -18,6 +18,9 @@ It also helps to create shipment orders and keep track of all shipments at one p
 
 Note: There is a 2-3 seconds latency to establish a connection. 
 
+### Project Walkthrough
+[Video link](https://www.loom.com/share/3fd04979bcce4ae8a5df0f73e11ad606)
+
 ### Technologies Used :
 * Java, DynamoDB, AWS S3, AWS Lambda, AWS API Gateway, React, Bootstrap, AWS Amplify (for hosting)
 
