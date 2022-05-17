@@ -8,7 +8,7 @@ info:
     Some useful links:
 
     - [InventoryManager
-    repository](https://github.com/BloomTechBackend/bd-team-project-jobsmarter)
+    repository](https://github.com/poojaleo/inventory-manager)
   version: 1.0.0
   title: InventoryManager API
 paths:

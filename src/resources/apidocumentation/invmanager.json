@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "description": "InventoryManagerAPI can be used for inventory management for warehouses, collections, shops, manufacturers, organizations and more.\n\nSome useful links:\n- [InventoryManager repository](https://github.com/BloomTechBackend/bd-team-project-jobsmarter)",
+    "description": "InventoryManagerAPI can be used for inventory management for warehouses, collections, shops, manufacturers, organizations and more.\n\nSome useful links:\n- [InventoryManager repository](https://github.com/poojaleo/inventory-manager)",
     "version": "1.0.0",
     "title": "InventoryManager API"
   },
