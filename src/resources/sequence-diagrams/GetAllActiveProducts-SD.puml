@@ -1,0 +1,46 @@
+@startuml
+title Get All Active Products
+
+actor Client
+participant "API Gateway" as APIGateway
+participant AWSLambda
+participant GetAllActiveProductsActivity
+participant ProductDao
+participant ProductModelConverter
+
+database DynamoDB
+
+Client -> APIGateway : GET /company/{companyName}/products
+activate Client
+activate APIGateway
+APIGateway -> AWSLambda
+activate AWSLambda
+AWSLambda -> GetAllActiveProductsActivity :  handleRequest(GetAllActiveProductsRequest, Context)
+activate GetAllActiveProductsActivity
+
+GetAllActiveProductsActivity -> ProductDao : getAllActiveProducts(String : companyName)
+activate ProductDao
+ProductDao -> DynamoDB : query all products for that companyName and if isActive
+activate DynamoDB
+
+ProductDao <-- DynamoDB : List<Products>
+deactivate DynamoDB
+GetAllActiveProductsActivity <-- ProductDao : List<Products>
+deactivate ProductDao
+loop iterate through each product
+GetAllActiveProductsActivity -> ProductModelConverter : toProductModel(Product)
+activate ProductModelConverter
+GetAllActiveProductsActivity <-- ProductModelConverter : ProductModel
+deactivate ProductModelConverter
+end
+
+GetAllActiveProductsActivity -> GetAllActiveProductsActivity: create GetAllActiveProductResponse
+AWSLambda <-- GetAllActiveProductsActivity : GetAllActiveProductResponse
+deactivate GetAllActiveProductsActivity
+APIGateway <-- AWSLambda
+deactivate AWSLambda
+Client <-- APIGateway : 200 Response
+deactivate APIGateway
+deactivate Client
+
+@enduml

@@ -85,19 +85,4 @@ public class ProductDao {
         return product;
     }
 
-
-   /* private ConditionCheck checkSkuValid(String skuToCheck) {
-        HashMap<String, AttributeValue> skuMap = new HashMap<>();
-        skuMap.put(":sku", new AttributeValue().withS(skuToCheck));
-
-        return new ConditionCheck()
-                .withTableName(PRODUCT_TABLE_NAME)
-                .withKey(skuMap)
-                .withConditionExpression("sku = :sku");
-    }
-
-    private Update reduceInventory(int quantityToReduce) {
-
-    }*/
-
 }

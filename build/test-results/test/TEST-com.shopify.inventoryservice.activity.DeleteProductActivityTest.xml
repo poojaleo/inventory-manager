@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.shopify.inventoryservice.activity.DeleteProductActivityTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-05-17T01:58:08" hostname="Poojas-MacBook-Pro.local" time="0.011">
+  <properties/>
+  <testcase name="handleRequest_deleteSku_returnsDeletedProductResponse()" classname="com.shopify.inventoryservice.activity.DeleteProductActivityTest" time="0.004"/>
+  <testcase name="handleRequest_skuNotInDatabase_throwsProductNotFoundException()" classname="com.shopify.inventoryservice.activity.DeleteProductActivityTest" time="0.006"/>
+  <system-out><![CDATA[Received Delete Product request for company: Dunder Mifflin and sku: DM001 
+Received Delete Product request for company: Dunder Mifflin and sku: DM002 
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

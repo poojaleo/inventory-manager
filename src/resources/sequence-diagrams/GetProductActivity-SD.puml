@@ -1,0 +1,52 @@
+@startuml
+title: Get Active Product
+
+actor Client
+participant "API Gateway" as APIGateway
+participant AWSLambda
+participant GetProductActivity
+participant ProductDao
+participant ProductModelConverter
+database DynamoDB
+
+Client -> APIGateway : GET /company/{companyName}/products/{sku}
+activate Client
+activate APIGateway
+APIGateway -> AWSLambda
+activate AWSLambda
+AWSLambda -> GetProductActivity : handleRequest(GetProductRequest, Context)
+activate GetProductActivity
+
+GetProductActivity -> ProductDao : getActiveProduct(companyName, sku)
+activate ProductDao
+ProductDao -> DynamoDB : load(companyName, sku)
+activate DynamoDB
+
+alt if product not found
+
+DynamoDB --> ProductDao : null
+ProductDao --> GetProductActivity : throws ProductNotFoundException
+GetProductActivity --> AWSLambda : ProductNotFoundException
+APIGateway <-- AWSLambda
+Client <-- APIGateway : 404 Response
+else otherwise continue
+end
+
+ProductDao <-- DynamoDB : Product
+deactivate DynamoDB
+ProductDao --> GetProductActivity: Product
+deactivate ProductDao
+GetProductActivity -> ProductModelConverter : toProductModel(Product)
+activate ProductModelConverter
+ProductModelConverter --> GetProductActivity : ProductModel
+deactivate ProductModelConverter
+GetProductActivity -> GetProductActivity: create GetProductResponse
+GetProductActivity --> AWSLambda : GetProductResponse
+deactivate GetProductActivity
+deactivate ProductDao
+AWSLambda --> APIGateway
+deactivate AWSLambda
+APIGateway --> Client : 200 Response
+deactivate APIGateway
+deactivate Client
+@enduml

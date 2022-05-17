@@ -1,0 +1,64 @@
+@startuml
+title: Update Product
+
+actor Client
+participant "API Gateway" as APIGateway
+participant AWSLambda
+participant UpdateProductActivity
+participant ProductDao
+participant ProductModelConverter
+database DynamoDB
+
+Client -> APIGateway : PUT /company/{companyName}/products/{sku}
+activate Client
+activate APIGateway
+APIGateway -> AWSLambda
+activate AWSLambda
+AWSLambda -> UpdateProductActivity : handleRequest(UpdateProductRequest, Context)
+activate UpdateProductActivity
+
+UpdateProductActivity -> ProductDao : getActiveProduct(companyName, sku)
+activate ProductDao
+ProductDao -> DynamoDB : load(companyName, sku)
+activate DynamoDB
+
+alt if product not found
+
+DynamoDB --> ProductDao : null
+ProductDao --> UpdateProductActivity : throws ProductNotFoundException
+UpdateProductActivity --> AWSLambda : ProductNotFoundException
+APIGateway <-- AWSLambda
+Client <-- APIGateway : 404 Response
+else otherwise continue
+end
+
+alt if quantity, cost is invalid
+UpdateProductActivity -> UpdateProductActivity: check quantity
+UpdateProductActivity -> UpdateProductActivity: check cost
+AWSLambda <-- UpdateProductActivity : throw InvalidAttributeValueException
+APIGateway <-- AWSLambda
+Client <-- APIGateway : 400 Response
+else otherwise continue
+end
+
+UpdateProductActivity -> UpdateProductActivity: updates Product object
+UpdateProductActivity -> ProductDao: saveProduct([product])
+ProductDao -> DynamoDB: save Product
+DynamoDB --> ProductDao
+deactivate DynamoDB
+ProductDao --> UpdateProductActivity : Product
+deactivate ProductDao
+UpdateProductActivity -> ProductModelConverter : toProductModel(Product)
+activate ProductModelConverter
+ProductModelConverter --> UpdateProductActivity : ProductModel
+deactivate ProductModelConverter
+UpdateProductActivity -> UpdateProductActivity: create UpdateProductResponse
+UpdateProductActivity --> AWSLambda : UpdateProductResponse
+deactivate UpdateProductActivity
+deactivate ProductDao
+AWSLambda --> APIGateway
+deactivate AWSLambda
+APIGateway --> Client : 200 Response
+deactivate APIGateway
+deactivate Client
+@enduml

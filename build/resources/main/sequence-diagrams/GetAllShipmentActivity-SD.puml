@@ -1,0 +1,47 @@
+@startuml
+title Get All Shipments
+
+actor Client
+participant "API Gateway" as APIGateway
+participant AWSLambda
+participant GetAllShipmentActivity
+participant ShipmentDao
+participant ShipmentModelConverter
+
+database DynamoDB
+
+Client -> APIGateway : GET /company/{companyName}/shipments
+activate Client
+activate APIGateway
+APIGateway -> AWSLambda
+activate AWSLambda
+AWSLambda -> GetAllShipmentActivity :  handleRequest(GetAllShipmentRequest, Context)
+activate GetAllShipmentActivity
+
+GetAllShipmentActivity -> ShipmentDao : getAllShipment(String : companyName)
+activate ShipmentDao
+ShipmentDao -> DynamoDB : query all Shipment for that companyName
+activate DynamoDB
+
+ShipmentDao <-- DynamoDB : List<Shipment>
+deactivate DynamoDB
+GetAllShipmentActivity <-- ShipmentDao : List<Shipment>
+deactivate ShipmentDao
+
+loop iterate through each Shipment
+GetAllShipmentActivity -> ShipmentModelConverter : toShipmentModel(Shipment)
+activate ShipmentModelConverter
+GetAllShipmentActivity <-- ShipmentModelConverter : ShipmentModel
+deactivate ShipmentModelConverter
+end
+
+GetAllShipmentActivity -> GetAllShipmentActivity: create GetAllShipmentResponse
+AWSLambda <-- GetAllShipmentActivity : GetAllShipmentResponse
+deactivate GetAllShipmentActivity
+APIGateway <-- AWSLambda
+deactivate AWSLambda
+Client <-- APIGateway : 200 Response
+deactivate APIGateway
+deactivate Client
+
+@enduml

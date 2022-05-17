@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.shopify.inventoryservice.dynamodb.ProductDaoTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2022-05-17T01:58:09" hostname="Poojas-MacBook-Pro.local" time="0.034">
+  <properties/>
+  <testcase name="getProductActiveAndInactive_withProductNotInDatabase_throwsProductNotFoundException()" classname="com.shopify.inventoryservice.dynamodb.ProductDaoTest" time="0.002"/>
+  <testcase name="getInactiveProduct_withProductNotInDatabase_throwsProductNotFoundException()" classname="com.shopify.inventoryservice.dynamodb.ProductDaoTest" time="0.002"/>
+  <testcase name="getProductActiveAndInactive_withProductInDatabase_returnsProduct()" classname="com.shopify.inventoryservice.dynamodb.ProductDaoTest" time="0.002"/>
+  <testcase name="getActiveProduct_withProductInDatabase_returnsProduct()" classname="com.shopify.inventoryservice.dynamodb.ProductDaoTest" time="0.001"/>
+  <testcase name="getAllInactiveProducts_companyHasOneInactiveProducts_returnsOneInactiveProducts()" classname="com.shopify.inventoryservice.dynamodb.ProductDaoTest" time="0.002"/>
+  <testcase name="getInactiveProduct_withActiveProductNotInDatabase_throwsProductNotFoundException()" classname="com.shopify.inventoryservice.dynamodb.ProductDaoTest" time="0.001"/>
+  <testcase name="getActiveProduct_withProductNotInDatabase_throwsProductNotFoundException()" classname="com.shopify.inventoryservice.dynamodb.ProductDaoTest" time="0.001"/>
+  <testcase name="getAllActiveProducts_companyHasTwoActiveProducts_returnsTwoActiveProducts()" classname="com.shopify.inventoryservice.dynamodb.ProductDaoTest" time="0.001"/>
+  <testcase name="saveProduct_validProduct_returnsProduct()" classname="com.shopify.inventoryservice.dynamodb.ProductDaoTest" time="0.002"/>
+  <testcase name="getActiveProduct_withInActiveProductNotInDatabase_throwsProductNotFoundException()" classname="com.shopify.inventoryservice.dynamodb.ProductDaoTest" time="0.004"/>
+  <testcase name="getAllActiveProducts_companyHasZeroActiveProducts_returnsEmptyList()" classname="com.shopify.inventoryservice.dynamodb.ProductDaoTest" time="0.003"/>
+  <testcase name="getInactiveProduct_withProductInDatabase_returnsProduct()" classname="com.shopify.inventoryservice.dynamodb.ProductDaoTest" time="0.002"/>
+  <testcase name="getAllInactiveProducts_companyHasZeroInactiveProducts_returnsEmptyList()" classname="com.shopify.inventoryservice.dynamodb.ProductDaoTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

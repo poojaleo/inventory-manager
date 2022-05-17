@@ -1,0 +1,72 @@
+@startuml
+title Create Company
+
+actor Client
+participant "API Gateway" as APIGateway
+participant AWSLambda
+participant CreateCompanyActivity
+participant CompanyDao
+participant InventoryManagerServiceUtility
+participant CompanyModelConverter
+database DynamoDB
+
+Client -> APIGateway : POST /company
+activate Client
+activate APIGateway
+APIGateway -> AWSLambda
+
+activate AWSLambda
+
+AWSLambda -> CreateCompanyActivity : handleRequest(CreateCompanyRequest, Context)
+activate CreateCompanyActivity
+
+CreateCompanyActivity -> InventoryManagerServiceUtility : isValidEmailAddress(emailAddress)
+activate InventoryManagerServiceUtility
+CreateCompanyActivity -> InventoryManagerServiceUtility : isValidPassword(password)
+
+alt if emailAddress or password invalid
+    CreateCompanyActivity <-- InventoryManagerServiceUtility : false
+    AWSLambda <-- CreateCompanyActivity : throw InvalidAttributeValueException
+    APIGateway <-- AWSLambda
+    Client <-- APIGateway : 400 Response
+else otherwise, continue
+end
+deactivate InventoryManagerServiceUtility
+
+CreateCompanyActivity -> CompanyDao : loadCompany(companyName)
+activate CompanyDao
+
+alt if companyName already exists
+    CreateCompanyActivity <-- CompanyDao : returns Company
+    AWSLambda <-- CreateCompanyActivity : throw CompanyNameAlreadyExistsException
+    APIGateway <-- AWSLambda
+    Client <-- APIGateway : 409 Response
+else otherwise, continue
+end
+
+
+
+CreateCompanyActivity -> CreateCompanyActivity : populateCompanyObject
+CreateCompanyActivity -> CompanyDao : saveCompany
+
+CompanyDao -> DynamoDB : save Company
+activate DynamoDB
+CompanyDao <-- DynamoDB
+deactivate DynamoDB
+CreateCompanyActivity <-- CompanyDao : Company
+deactivate CompanyDao
+CreateCompanyActivity -> CompanyModelConverter : toCompanyModel(Company)
+activate CompanyModelConverter
+CreateCompanyActivity <-- CompanyModelConverter : CompanyModel
+deactivate CompanyModelConverter
+CreateCompanyActivity -> CreateCompanyActivity : CreateCompanyResponse
+AWSLambda <-- CreateCompanyActivity : CreateCompanyResponse
+
+deactivate CreateCompanyActivity
+APIGateway <-- AWSLambda
+deactivate AWSLambda
+Client <-- APIGateway : 200 Response
+deactivate APIGateway
+deactivate Client
+
+@enduml

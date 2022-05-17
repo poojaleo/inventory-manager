@@ -1,0 +1,52 @@
+@startuml
+title: Get Shipment
+
+actor Client
+participant "API Gateway" as APIGateway
+participant AWSLambda
+participant GetShipmentActivity
+participant ShipmentDao
+participant ShipmentModelConverter
+database DynamoDB
+
+Client -> APIGateway : GET /company/{companyName}/shipments/{shipmentId}
+activate Client
+activate APIGateway
+APIGateway -> AWSLambda
+activate AWSLambda
+AWSLambda -> GetShipmentActivity : handleRequest(GetShipmentRequest, Context)
+activate GetShipmentActivity
+
+GetShipmentActivity -> ShipmentDao : getShipment(companyName, shipmentId)
+activate ShipmentDao
+ShipmentDao -> DynamoDB : load(companyName, shipmentId)
+activate DynamoDB
+
+alt if product not found
+
+DynamoDB --> ShipmentDao : null
+ShipmentDao --> GetShipmentActivity : throws ShipmentNotFoundException
+GetShipmentActivity--> AWSLambda : ShipmentNotFoundException
+APIGateway <-- AWSLambda
+Client <-- APIGateway : 404 Response
+else otherwise continue
+end
+
+ShipmentDao <-- DynamoDB : Shipment
+deactivate DynamoDB
+ShipmentDao --> GetShipmentActivity: Shipment
+deactivate ShipmentDao
+GetShipmentActivity -> ShipmentModelConverter : toShipmentModel(Shipment)
+activate ShipmentModelConverter
+ShipmentModelConverter --> GetShipmentActivity : ShipmentModel
+deactivate ShipmentModelConverter
+GetShipmentActivity -> GetShipmentActivity: create GetShipmentResponse
+GetShipmentActivity --> AWSLambda : GetShipmentResponse
+deactivate GetShipmentActivity
+deactivate ShipmentDao
+AWSLambda --> APIGateway
+deactivate AWSLambda
+APIGateway --> Client : 200 Response
+deactivate APIGateway
+deactivate Client
+@enduml

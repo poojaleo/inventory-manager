@@ -1,0 +1,40 @@
+@startuml
+entity Company {
+  * companyName: String
+  --
+  * createdAt : String
+  * emailAddress : String
+  * password : String
+}
+
+entity Product {
+  * companyName : String
+  ..
+  * sku : String
+  --
+  * name: String
+    description: String
+  * quantity : String
+  * cost: String (ENUM)
+  * isActive: Boolean
+    deleteComment : String
+}
+
+entity Shipment {
+  * companyName: String
+  ..
+  * shipmentId : String
+  --
+  * createdAt: String
+  * status: String (ENUM)
+  * shippingAddress: String
+    trackingNumber : String
+    productsShipped : Map object of sku and quantity
+}
+
+
+
+Company "1  " --o{ "0..*" Product
+Company "1" --|{ "0..*" Shipment
+
+@enduml

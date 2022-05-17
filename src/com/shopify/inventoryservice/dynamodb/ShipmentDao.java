@@ -17,7 +17,7 @@ public class ShipmentDao {
         this.mapper = mapper;
     }
 
-    public Shipment getShipment(String companyName, String shipmentId) {
+        public Shipment getShipment(String companyName, String shipmentId) {
         Shipment shipment = mapper.load(Shipment.class, companyName, shipmentId);
 
         if(shipment == null) {

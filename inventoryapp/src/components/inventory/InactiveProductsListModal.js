@@ -29,6 +29,7 @@ const InactiveProductsListModal = (show, handleClose, inactiveProducts) => {
                 <td>{product.name}</td>
                 <td>{product.quantity}</td>
                 <td>{product.cost}</td>
+                <td>{product.deleteComment}</td>
                 <td><Button size={"sm"} onClick={() => undeleteProduct(product.sku)}>UnDelete Product</Button> </td>
             </tr>
         )
@@ -50,6 +51,7 @@ const InactiveProductsListModal = (show, handleClose, inactiveProducts) => {
                     <th>Name</th>
                     <th>Quantity</th>
                     <th>Cost</th>
+                    <th>Comment</th>
                     <th>Action</th>
                     </thead>
                     <tbody>

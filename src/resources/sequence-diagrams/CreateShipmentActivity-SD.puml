@@ -1,0 +1,76 @@
+@startuml
+title: Create Shipment
+
+actor Client
+participant "API Gateway" as APIGateway
+participant AWSLambda
+participant CreateShipmentActivity
+participant ShipmentDao
+participant ProductDao
+participant ShipmentModelConverter
+participant InventoryManagerServiceUtility
+database DynamoDB
+
+Client -> APIGateway : POST /company/{companyName}/shipments
+activate Client
+activate APIGateway
+APIGateway -> AWSLambda
+
+activate AWSLambda
+AWSLambda -> CreateShipmentActivity : handleRequest(CreateShipmentRequest, Context)
+activate CreateShipmentActivity
+
+
+CreateShipmentActivity -> InventoryManagerServiceUtility : generateId
+activate InventoryManagerServiceUtility
+InventoryManagerServiceUtility --> CreateShipmentActivity : alphanumeric Id
+deactivate InventoryManagerServiceUtility
+
+
+
+loop
+CreateShipmentActivity -> ProductDao : getActiveProduct(companyName, sku);
+activate ProductDao
+ProductDao -> DynamoDB : loadProduct(companyName, sku)
+activate DynamoDB
+alt if sku does not exists
+DynamoDB --> ProductDao : null
+ProductDao --> CreateShipmentActivity : null
+CreateShipmentActivity --> AWSLambda : throw ProductNotFoundException
+APIGateway <-- AWSLambda
+Client <-- APIGateway : 404 Response
+else otherwise continue
+end
+DynamoDB --> ProductDao : Product
+ProductDao --> CreateShipmentActivity : Product
+CreateShipmentActivity -> CreateShipmentActivity : update product by reducing quantity
+CreateShipmentActivity -> ProductDao : saveProduct(Product)
+ProductDao -> DynamoDB : saveProduct(Product)
+DynamoDB --> ProductDao
+end
+
+deactivate ProductDao
+
+
+CreateShipmentActivity -> CreateShipmentActivity : populate Shipment object
+CreateShipmentActivity -> ShipmentDao: saveShipment(Shipment)
+activate ShipmentDao
+ShipmentDao -> DynamoDB: save Shipment
+DynamoDB --> ShipmentDao
+deactivate DynamoDB
+ShipmentDao --> CreateShipmentActivity : Shipment
+deactivate ShipmentDao
+CreateShipmentActivity -> ShipmentModelConverter : toShipmentModel(Shipment)
+activate ShipmentModelConverter
+ShipmentModelConverter --> CreateShipmentActivity : ShipmentModel
+deactivate ShipmentModelConverter
+CreateShipmentActivity -> CreateShipmentActivity: create CreateShipmentResponse
+CreateShipmentActivity --> AWSLambda : CreateShipmentResponse
+deactivate CreateShipmentActivity
+deactivate ShipmentDao
+AWSLambda --> APIGateway
+deactivate AWSLambda
+APIGateway --> Client : 200 Response
+deactivate APIGateway
+deactivate Client
+@enduml

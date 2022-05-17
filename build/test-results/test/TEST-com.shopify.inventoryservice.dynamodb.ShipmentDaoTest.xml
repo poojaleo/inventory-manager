@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.shopify.inventoryservice.dynamodb.ShipmentDaoTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2022-05-17T01:58:08" hostname="Poojas-MacBook-Pro.local" time="0.74">
+  <properties/>
+  <testcase name="saveShipment_validShipment_returnsShipment()" classname="com.shopify.inventoryservice.dynamodb.ShipmentDaoTest" time="0.439"/>
+  <testcase name="getShipment_shipmentIdInDatabase_returnsShipment()" classname="com.shopify.inventoryservice.dynamodb.ShipmentDaoTest" time="0.006"/>
+  <testcase name="getShipment_shipmentIdNotInDatabase_throwsShipmentNotFoundException()" classname="com.shopify.inventoryservice.dynamodb.ShipmentDaoTest" time="0.001"/>
+  <testcase name="getAllShipments_companyHasNoShipments_returnsEmptyList()" classname="com.shopify.inventoryservice.dynamodb.ShipmentDaoTest" time="0.269"/>
+  <testcase name="getAllShipments_companyHasTwoShipments_returnsTwoShipments()" classname="com.shopify.inventoryservice.dynamodb.ShipmentDaoTest" time="0.008"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

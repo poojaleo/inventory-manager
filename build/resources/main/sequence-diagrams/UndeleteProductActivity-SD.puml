@@ -1,0 +1,55 @@
+@startuml
+title: Undelete Product
+
+actor Client
+participant "API Gateway" as APIGateway
+participant AWSLambda
+participant UndeleteProductActivity
+participant ProductDao
+participant ProductModelConverter
+database DynamoDB
+
+Client -> APIGateway : PUT /company/{companyName}/products/inactive/{sku}
+activate Client
+activate APIGateway
+APIGateway -> AWSLambda
+activate AWSLambda
+AWSLambda -> UndeleteProductActivity : handleRequest(UndeleteProductRequest, Context)
+activate UndeleteProductActivity
+
+UndeleteProductActivity -> ProductDao : getInactiveProduct(companyName, sku)
+activate ProductDao
+ProductDao -> DynamoDB : load(companyName, sku)
+activate DynamoDB
+
+alt if product not found
+
+DynamoDB --> ProductDao : null
+ProductDao --> UndeleteProductActivity : throws ProductNotFoundException
+UndeleteProductActivity --> AWSLambda : ProductNotFoundException
+APIGateway <-- AWSLambda
+Client <-- APIGateway : 404 Response
+else otherwise continue
+end
+
+UndeleteProductActivity -> UndeleteProductActivity: update Product, isActive = true, remove delete comments
+UndeleteProductActivity -> ProductDao: saveProduct([product])
+ProductDao -> DynamoDB: save Product
+DynamoDB --> ProductDao
+deactivate DynamoDB
+ProductDao --> UndeleteProductActivity : Product
+deactivate ProductDao
+UndeleteProductActivity -> ProductModelConverter : toProductModel(Product)
+activate ProductModelConverter
+ProductModelConverter --> UndeleteProductActivity : ProductModel
+deactivate ProductModelConverter
+UndeleteProductActivity -> UndeleteProductActivity: create UndeleteProductResponse
+UndeleteProductActivity --> AWSLambda : UndeleteProductResponse
+deactivate UndeleteProductActivity
+deactivate ProductDao
+AWSLambda --> APIGateway
+deactivate AWSLambda
+APIGateway --> Client : 200 Response
+deactivate APIGateway
+deactivate Client
+@enduml

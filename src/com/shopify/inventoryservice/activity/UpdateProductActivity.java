@@ -31,6 +31,12 @@ public class UpdateProductActivity implements RequestHandler<UpdateProductReques
         lambdaLogger.log(String.format("Received Update Product request for company: %s and sku: %s ",
                 updateProductRequest.getCompanyName(), updateProductRequest.getSku()));
 
+        if(updateProductRequest.getQuantity() < 0)
+            throw new InvalidAttributeValueException("Invalid: Product Quantity cannot be less than 0");
+
+        if(updateProductRequest.getCost().doubleValue() < 0)
+            throw new InvalidAttributeValueException("Invalid: Product Cost cannot be less than 0");
+
         Product product;
 
         try {
@@ -38,12 +44,6 @@ public class UpdateProductActivity implements RequestHandler<UpdateProductReques
         } catch (ProductNotFoundException productNotFoundException) {
             throw  productNotFoundException;
         }
-
-        if(updateProductRequest.getQuantity() < 0)
-            throw new InvalidAttributeValueException("Invalid: Product Quantity cannot be less than 0");
-
-        if(updateProductRequest.getCost().doubleValue() < 0)
-            throw new InvalidAttributeValueException("Invalid: Product Cost cannot be less than 0");
 
         product.setName(updateProductRequest.getName());
         product.setDescription(updateProductRequest.getDescription());

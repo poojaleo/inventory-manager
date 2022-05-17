@@ -1,0 +1,62 @@
+@startuml
+title Get Company
+
+actor Client
+participant "API Gateway" as APIGateway
+participant AWSLambda
+participant GetCompanyActivity
+participant CompanyDao
+
+participant CompanyModelConverter
+database DynamoDB
+
+Client -> APIGateway : GET /company/{companyName}
+activate Client
+activate APIGateway
+APIGateway -> AWSLambda
+activate AWSLambda
+
+AWSLambda -> GetCompanyActivity : handleRequest(GetCompanyRequest, Context)
+activate GetCompanyActivity
+
+GetCompanyActivity -> CompanyDao : getCompany(companyName : String)
+activate CompanyDao
+CompanyDao -> DynamoDB : load company by companyName
+activate DynamoDB
+alt if companyName does not exist
+    CompanyDao <-- DynamoDB : null
+    GetCompanyActivity <-- CompanyDao : throw CompanyNotFoundException
+    AWSLambda <-- GetCompanyActivity : CompanyNotFoundException
+    APIGateway <-- AWSLambda
+    Client <-- APIGateway : 404 Response
+else otherwise, continue
+end
+
+CompanyDao <-- DynamoDB : Company
+deactivate DynamoDB
+GetCompanyActivity <-- CompanyDao : Company
+deactivate CompanyDao
+
+alt if password does not match
+   GetCompanyActivity -> GetCompanyActivity : check if password matches
+    AWSLambda <-- GetCompanyActivity : throw InvalidPasswordException
+    APIGateway <-- AWSLambda
+    Client <-- APIGateway : 401 Response
+else otherwise, continue
+end
+
+GetCompanyActivity -> CompanyModelConverter : toCompanyModel(Company)
+activate CompanyModelConverter
+GetCompanyActivity <-- CompanyModelConverter : CompanyModel
+deactivate CompanyModelConverter
+GetCompanyActivity -> GetCompanyActivity : GetCompanyResponse
+AWSLambda <-- GetCompanyActivity : GetCompanyResponse
+
+deactivate GetCompanyActivity
+APIGateway <-- AWSLambda
+deactivate AWSLambda
+Client <-- APIGateway : 200 Response
+deactivate APIGateway
+deactivate Client
+
+@enduml

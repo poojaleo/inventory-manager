@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.shopify.inventoryservice.activity.GetAllShipmentActivityTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-05-17T01:58:08" hostname="Poojas-MacBook-Pro.local" time="0.009">
+  <properties/>
+  <testcase name="handleRequest_companyHasTwoShipments_returnsTwoShipments()" classname="com.shopify.inventoryservice.activity.GetAllShipmentActivityTest" time="0.006"/>
+  <testcase name="handleRequest_companyHasZeroShipments_returnsZeroShipments()" classname="com.shopify.inventoryservice.activity.GetAllShipmentActivityTest" time="0.002"/>
+  <system-out><![CDATA[Received Get All Shipment Request for company:Dunder Mifflin
+Received Get All Shipment Request for company:Dunder Mifflin
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

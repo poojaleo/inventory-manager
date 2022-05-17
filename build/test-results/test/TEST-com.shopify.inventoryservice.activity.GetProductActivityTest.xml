@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.shopify.inventoryservice.activity.GetProductActivityTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-05-17T01:58:08" hostname="Poojas-MacBook-Pro.local" time="0.012">
+  <properties/>
+  <testcase name="handleRequest_activeProductInDatabase_returnsProductModel()" classname="com.shopify.inventoryservice.activity.GetProductActivityTest" time="0.007"/>
+  <testcase name="handleRequest_activeProductNotInDatabase_throwsProductNotFoundException()" classname="com.shopify.inventoryservice.activity.GetProductActivityTest" time="0.005"/>
+  <system-out><![CDATA[Received Get Product request for company: Dunder Mifflin and sku: DM001 
+Received Get Product request for company: Dunder Mifflin and sku: DM002 
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

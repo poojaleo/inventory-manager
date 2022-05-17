@@ -1,0 +1,57 @@
+@startuml
+title: Delete Product
+
+actor Client
+participant "API Gateway" as APIGateway
+participant AWSLambda
+participant DeleteProductActivity
+participant ProductDao
+participant ProductModelConverter
+database DynamoDB
+
+Client -> APIGateway : DELETE /company/{companyName}/products/{sku}
+activate Client
+activate APIGateway
+APIGateway -> AWSLambda
+activate AWSLambda
+AWSLambda -> DeleteProductActivity : handleRequest(DeleteProductRequest, Context)
+activate DeleteProductActivity
+
+DeleteProductActivity -> ProductDao : getActiveProduct(companyName, sku)
+activate ProductDao
+ProductDao -> DynamoDB : load(companyName, sku)
+activate DynamoDB
+
+alt if product not found
+
+DynamoDB --> ProductDao : null
+ProductDao --> DeleteProductActivity : throws ProductNotFoundException
+DeleteProductActivity --> AWSLambda : ProductNotFoundException
+APIGateway <-- AWSLambda
+Client <-- APIGateway : 404 Response
+else otherwise continue
+end
+
+DynamoDB --> ProductDao : Product
+ProductDao --> DeleteProductActivity : Product
+DeleteProductActivity -> DeleteProductActivity: update Product, isActive = false, add delete comments
+DeleteProductActivity -> ProductDao: saveProduct([product])
+ProductDao -> DynamoDB: save Product
+DynamoDB --> ProductDao
+deactivate DynamoDB
+ProductDao --> DeleteProductActivity : Product
+deactivate ProductDao
+DeleteProductActivity -> ProductModelConverter : toProductModel(Product)
+activate ProductModelConverter
+ProductModelConverter --> DeleteProductActivity : ProductModel
+deactivate ProductModelConverter
+DeleteProductActivity -> DeleteProductActivity: create DeleteProductResponse
+DeleteProductActivity --> AWSLambda : DeleteProductResponse
+deactivate DeleteProductActivity
+deactivate ProductDao
+AWSLambda --> APIGateway
+deactivate AWSLambda
+APIGateway --> Client : 200 Response
+deactivate APIGateway
+deactivate Client
+@enduml

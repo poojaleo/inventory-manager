@@ -9,6 +9,7 @@ import UpdateInventoryModal from "./UpdateInventoryModal";
 import CreateInventoryModal from "./CreateInventoryModal";
 import InactiveProductsListModal from "./InactiveProductsListModal";
 import GoToShippingButton from "../shipping/GoToShippingButton";
+import DeleteInventoryModal from "./DeleteInventoryModal";
 
 const Inventory = (props) => {
     const [companyName, setCompanyName] = useState("");
@@ -19,6 +20,9 @@ const Inventory = (props) => {
     const[selectedProduct, setSelectedProduct] = useState({"companyName":companyName,"sku":"","name":"",
         "description":"","quantity": 0,"cost":0.00});
     const [createModal, setCreateModal] = useState(false);
+    const [deleteModal, setDeleteModal] = useState(false);
+    const [deleteComments, setDeleteComments] = useState(" ");
+    const [deleteSku, setDeleteSku]  = useState("");
     const baseURL = "https://4gybudb0ui.execute-api.us-west-2.amazonaws.com/inventory-manager/";
 
     useEffect(() => {
@@ -47,14 +51,17 @@ const Inventory = (props) => {
         }).catch(error => console.log(error.message))
     }
 
-    const deleteProduct = (sku, event) => {
+    const openDeleteProductModal = (sku, event) => {
         event.preventDefault();
+        setDeleteSku(sku);
+        setDeleteModal(true);
+        /*event.preventDefault();
         const url = `${baseURL}/company/${companyName}/products/${sku}`;
 
         axios.delete(url).then(response => {
             console.log(response.data);
             window.location.reload();
-        }).catch(error => console.log(error.message));
+        }).catch(error => console.log(error.message));*/
     }
 
 
@@ -101,7 +108,7 @@ const Inventory = (props) => {
                                 onClick={(event => openUpdateProductModal(event, product["sku"], product["name"],
                                     product["description"], product["quantity"], product["cost"]) )}>Update</Button></td>
 
-                    <td><Button size={"sm"} color={"danger"} onClick={(event) => deleteProduct(product.sku, event)}>Delete</Button> </td>
+                    <td><Button size={"sm"} color={"danger"} onClick={(event) => openDeleteProductModal(product.sku, event)}>Delete</Button> </td>
                 </tr>
         )
     })
@@ -148,6 +155,7 @@ const Inventory = (props) => {
                     selectedProduct.name, selectedProduct.description, selectedProduct.quantity, selectedProduct.cost)}
                 {InactiveProductsListModal(inactiveProductsModal, ()=>setInactiveProductsModal(false),
                     inactiveProductsList)}
+                {DeleteInventoryModal(deleteModal, ()=>setDeleteModal(false), deleteSku, deleteComments)}
             </div>
 
         </Container>

@@ -1,0 +1,426 @@
+@startuml
+scale 2/3
+interface RequestHandler {
+O handleRequest(I input, Context context)
+}
+
+class Company {
+- @DynamoDBHashKey companyName : String
+- createdAt : String
+- emailAddress : String
+- password : String
++ String getCompanyName()
++ void setCompanyName(String)
++ String getCreatedAt()
++ void setCreatedAt(String)
++ String getEmailAddress()
++ void setEmailAddress(String)
++ String getPassword()
++ void setPassword(String)
++ boolean equals(Object)
++ int hashCode()
++ {static} Builder builder()
+}
+
+
+class CreateCompanyActivity {
+- companyDao : CompanyDao
+- companyModelConverter : CompanyModelConverter
++ CreateCompanyResponse handleRequest(CreateCompanyRequest,Context)
+}
+
+class CreateCompanyRequest {
+- companyName : String
+- emailAddress : String
+- password : String
++ String getCompanyName()
++ void setCompanyName(String)
++ String getEmailAddress()
++ void setEmailAddress(String)
++ String getPassword()
++ void setPassword(String)
++ {static} Builder builder()
+}
+
+class GetCompanyActivity {
+- companyDao : CompanyDao
+- companyModelConverter : CompanyModelConverter
++ GetCompanyResponse handleRequest(GetCompanyRequest,Context
+}
+
+class GetCompanyRequest {
+- companyName : String
+- password : String
++ String getCompanyName()
++ void setCompanyName(String)
++ String getPassword()
++ void setPassword(String)
++ {static} Builder builder()
+}
+
+class CompanyDao {
+- mapper : DynamoDBMapper
++ Company getCompany(String)
++ Company saveCompany(Company)
+}
+
+class ProductDao {
+- mapper : DynamoDBMapper
++ Product getActiveProduct(String,String)
++ Product getInActiveProduct(String,String)
++ Product getProductActiveAndInactive(String,String)
++ List<Product> getAllActiveProducts(String)
++ List<Product> getAllInactiveProducts(String)
+- List<Product> getAllProducts(String,String)
++ Product saveProduct(Product)
+}
+
+class Product {
+- @DynamoDBHashKey companyName : String
+- @DynamoDBRange sku : String
+- name : String
+- description : String
+- quantity : int
+- cost : BigDecimal
+- isActive : boolean
+- deleteComment : String
++ String getCompanyName()
++ void setCompanyName(String)
++ String getSku()
++ void setSku(String)
++ boolean isActive()
++ void setActive(boolean)
++ String getName()
++ void setName(String)
++ String getDescription()
++ void setDescription(String)
++ int getQuantity()
++ void setQuantity(int)
++ BigDecimal getCost()
++ void setCost(BigDecimal)
++ String getDeleteComment()
++ void setDeleteComment(String)
++ boolean equals(Object)
++ int hashCode()
++ {static} Builder builder()
+}
+
+
+class CreateProductActivity {
+- productDao : ProductDao
+- productModelConverter : ProductModelConverter
++ CreateProductResponse handleRequest(CreateProductRequest,Context)
+}
+
+class CreateProductRequest {
+- companyName : String
+- sku : String
+- name : String
+- description : String
+- quantity : int
+- cost : BigDecimal
++ String getCompanyName()
++ void setCompanyName(String)
++ String getSku()
++ void setSku(String)
++ String getName()
++ void setName(String)
++ String getDescription()
++ void setDescription(String)
++ int getQuantity()
++ void setQuantity(int)
++ BigDecimal getCost()
++ void setCost(BigDecimal)
++ boolean equals(Object)
++ int hashCode()
++ {static} Builder builder()
+}
+
+class GetProductActivity {
+- productDao : ProductDao
+- productModelConverter : ProductModelConverter
++ GetProductResponse handleRequest(GetProductRequest,Context)
+}
+
+class GetProductRequest {
+- companyName : String
+- sku : String
++ String getCompanyName()
++ void setCompanyName(String)
++ String getSku()
++ void setSku(String)
++ boolean equals(Object)
++ int hashCode()
++ {static} Builder builder()
+}
+
+class GetAllActiveProductsActivity {
+- productDao : ProductDao
+- productModelConverter : ProductModelConverter
++ GetAllActiveProductResponse handleRequest(GetAllActiveProductRequest,Context)
+}
+
+class GetAllActiveProductRequest {
+- companyName : String
++ String getCompanyName()
++ void setCompanyName(String)
++ boolean equals(Object)
++ int hashCode()
++ {static} Builder builder()
+}
+
+class GetAllInactiveProductsActivity {
+- productDao : ProductDao
+- productModelConverter : ProductModelConverter
++ GetAllInactiveProductResponse handleRequest(GetAllInactiveProductRequest,Context)
+}
+
+class GetAllInactiveProductRequest {
+- companyName : String
++ String getCompanyName()
++ void setCompanyName(String)
++ boolean equals(Object)
++ int hashCode()
++ {static} Builder builder()
+}
+
+class UpdateProductActivity {
+- productDao : ProductDao
+- productModelConverter : ProductModelConverter
++ UpdateProductResponse handleRequest(UpdateProductRequest,Context)
+}
+
+class UpdateProductRequest {
+- companyName : String
+- sku : String
+- name : String
+- description : String
+- quantity : int
+- cost : BigDecimal
++ String getCompanyName()
++ void setCompanyName(String)
++ String getSku()
++ void setSku(String)
++ String getName()
++ void setName(String)
++ String getDescription()
++ void setDescription(String)
++ int getQuantity()
++ void setQuantity(int)
++ BigDecimal getCost()
++ void setCost(BigDecimal)
++ boolean equals(Object)
++ int hashCode()
++ {static} Builder builder()
+}
+
+class DeleteProductRequest {
+- companyName : String
+- sku : String
+- deleteComments : String
++ String getCompanyName()
++ void setCompanyName(String)
++ String getSku()
++ void setSku(String)
++ String getDeleteComments()
++ void setDeleteComments(String)
++ boolean equals(Object)
++ int hashCode()
++ {static} Builder builder()
+}
+
+class DeleteProductActivity {
+- productDao : ProductDao
+- productModelConverter : ProductModelConverter
++ DeleteProductResponse handleRequest(DeleteProductRequest,Context)
+}
+
+class UndeleteProductActivity {
+- productDao : ProductDao
+- productModelConverter : ProductModelConverter
++ UndeleteProductResponse handleRequest(UndeleteProductRequest,Context)
+}
+
+
+class UndeleteProductRequest {
+- companyName : String
+- sku : String
++ String getCompanyName()
++ void setCompanyName(String)
++ String getSku()
++ void setSku(String)
++ boolean equals(Object)
++ int hashCode()
++ {static} Builder builder()
+}
+
+class Shipment {
+- companyName : String
+- shipmentId : String
+- createdAt : String
+- shippingAddress : String
+- status : ShipmentStatus
+- trackingNumber : String
+- productsShipped : Map<String,Integer>
++ String getCompanyName()
++ void setCompanyName(String)
++ String getShipmentId()
++ void setShipmentId(String)
++ String getCreatedAt()
++ void setCreatedAt(String)
++ String getShippingAddress()
++ void setShippingAddress(String)
++ ShipmentStatus getStatus()
++ void setStatus(ShipmentStatus)
++ String getTrackingNumber()
++ void setTrackingNumber(String)
++ Map<String,Integer> getProductsShipped()
++ void setProductsShipped(Map<String,Integer>)
++ boolean equals(Object)
++ int hashCode()
++ {static} Builder builder()
+}
+
+enum ShipmentStatus {
+    LABELCREATED,
+    INTRANSIT,
+    COMPLETED,
+    DELAYED,
+    FAILED,
+    UNKNOWN
+}
+
+class ShipmentDao {
+- mapper : DynamoDBMapper
++ Shipment getShipment(String,String)
++ List<Shipment> getAllShipments(String)
++ Shipment saveShipment(Shipment)
+}
+
+
+class CreateShipmentActivity {
+- shipmentDao : ShipmentDao
+- shipmentModelConverter : ShipmentModelConverter
+- productDao : ProductDao
++ CreateShipmentResponse handleRequest(CreateShipmentRequest,Context)
+}
+
+class CreateShipmentRequest {
+- companyName : String
+- shippingAddress : String
+- productsShipped : Map<String,Integer>
++ String getCompanyName()
++ void setCompanyName(String)
++ String getShippingAddress()
++ void setShippingAddress(String)
++ Map<String,Integer> getProductsShipped()
++ void setProductsShipped(Map<String,Integer>)
++ {static} Builder builder()
+}
+
+class GetAllShipmentActivity {
+- shipmentDao : ShipmentDao
+- shipmentModelConverter : ShipmentModelConverter
++ GetAllShipmentResponse handleRequest(GetAllShipmentRequest,Context)
+}
+
+class GetAllShipmentRequest {
+- companyName : String
++ String getCompanyName()
++ void setCompanyName(String)
++ {static} Builder builder()
+}
+
+
+class GetShipmentActivity {
+- shipmentDao : ShipmentDao
+- shipmentModelConverter : ShipmentModelConverter
++ GetShipmentResponse handleRequest(GetShipmentRequest,Context)
+}
+
+class GetShipmentRequest {
+- companyName : String
+- shipmentId : String
++ String getCompanyName()
++ void setCompanyName(String)
++ String getShipmentId()
++ void setShipmentId(String)
++ {static} Builder builder()
+}
+
+class UpdateShipmentActivity {
+- shipmentDao : ShipmentDao
+- shipmentModelConverter : ShipmentModelConverter
++ UpdateShipmentResponse handleRequest(UpdateShipmentRequest,Context)
+}
+
+class UpdateShipmentRequest {
+- companyName : String
+- shipmentId : String
+- shippingAddress : String
+- status : ShipmentStatus
+- trackingNumber : String
++ String getCompanyName()
++ void setCompanyName(String)
++ String getShipmentId()
++ void setShipmentId(String)
++ String getShippingAddress()
++ void setShippingAddress(String)
++ ShipmentStatus getStatus()
++ void setStatus(ShipmentStatus)
++ String getTrackingNumber()
++ void setTrackingNumber(String)
++ boolean equals(Object)
++ int hashCode()
++ {static} Builder builder()
+}
+
+
+
+
+RequestHandler <|.. CreateCompanyActivity
+RequestHandler <|.. GetCompanyActivity
+RequestHandler <|.. CreateProductActivity
+RequestHandler <|.. GetProductActivity
+RequestHandler <|.. GetAllActiveProductsActivity
+RequestHandler <|.. GetAllInactiveProductsActivity
+RequestHandler <|.. UpdateProductActivity
+RequestHandler <|.. DeleteProductActivity
+RequestHandler <|.. UndeleteProductActivity
+RequestHandler <|.. CreateShipmentActivity
+RequestHandler <|.. GetAllShipmentActivity
+RequestHandler <|.. GetShipmentActivity
+RequestHandler <|.. UpdateShipmentActivity
+CreateCompanyActivity *-- CompanyDao
+CreateCompanyActivity *-- CreateCompanyRequest
+GetCompanyActivity *-- GetCompanyRequest
+CompanyDao *-- Company
+GetCompanyActivity *-- CompanyDao
+CreateProductActivity *-- ProductDao
+CreateProductActivity *-- CreateProductRequest
+GetProductActivity *-- ProductDao
+GetProductActivity *-- GetProductRequest
+GetAllActiveProductsActivity *-- ProductDao
+GetAllActiveProductsActivity *-- GetAllActiveProductRequest
+GetAllInactiveProductsActivity *-- ProductDao
+GetAllInactiveProductsActivity *-- GetAllInactiveProductRequest
+UpdateProductActivity *-- ProductDao
+UpdateProductActivity *-- UpdateProductRequest
+DeleteProductActivity *-- ProductDao
+DeleteProductActivity *-- DeleteProductRequest
+UndeleteProductActivity *-- ProductDao
+UndeleteProductActivity *-- UndeleteProductRequest
+ProductDao *-- Product
+ShipmentDao *-- Shipment
+Shipment *-- ShipmentStatus
+CreateShipmentActivity *-- ShipmentDao
+CreateShipmentActivity *-- CreateShipmentRequest
+GetAllShipmentActivity *-- ShipmentDao
+GetAllShipmentActivity *-- GetAllShipmentRequest
+GetShipmentActivity *-- ShipmentDao
+GetShipmentActivity *-- GetShipmentRequest
+UpdateShipmentActivity *-- ShipmentDao
+UpdateShipmentActivity *-- UpdateShipmentRequest
+newpage
+
+@enduml

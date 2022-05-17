@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.shopify.inventoryservice.activity.CreateShipmentActivityTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-05-17T01:58:08" hostname="Poojas-MacBook-Pro.local" time="0.011">
+  <properties/>
+  <testcase name="handleRequest_createValidShipment_returnsValidCreateShipmentResponse()" classname="com.shopify.inventoryservice.activity.CreateShipmentActivityTest" time="0.011"/>
+  <system-out><![CDATA[Received Create Shipment Request for company:Dunder Mifflin
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
