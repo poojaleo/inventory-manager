@@ -154,7 +154,7 @@ const Shipping = (props) => {
                     {activeProductsList.map(({sku, quantity}, index) => <option key={sku} value={sku}>{sku} - Available: {quantity}</option>)}
                 </select>
                 <Label className={"mx-2"}>Quantity</Label>
-                <input type={"number"} name={"quantity"} defaultValue={element.quantity || ""}
+                <input type={"number"} name={"quantity"} value={element.quantity || ""}
                        onChange={event => handleInputChange(index, event)} />
                 <Button onClick={() => handleRemoveProduct(index)}>Remove</Button>
             </div>
