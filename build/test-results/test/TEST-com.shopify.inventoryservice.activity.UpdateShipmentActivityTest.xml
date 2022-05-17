@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.shopify.inventoryservice.activity.UpdateShipmentActivityTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-05-17T01:58:08" hostname="Poojas-MacBook-Pro.local" time="0.007">
+<testsuite name="com.shopify.inventoryservice.activity.UpdateShipmentActivityTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-05-17T04:40:25" hostname="Poojas-MacBook-Pro.local" time="0.007">
   <properties/>
-  <testcase name="handleRequest_shipmentIdNotValid_throwsShipmentNotFoundException()" classname="com.shopify.inventoryservice.activity.UpdateShipmentActivityTest" time="0.003"/>
+  <testcase name="handleRequest_shipmentIdNotValid_throwsShipmentNotFoundException()" classname="com.shopify.inventoryservice.activity.UpdateShipmentActivityTest" time="0.002"/>
   <testcase name="handleRequest_UpdateTrackingNumber_returnsValidUpdateShipmentResponse()" classname="com.shopify.inventoryservice.activity.UpdateShipmentActivityTest" time="0.004"/>
-  <system-out><![CDATA[Received Update Shipment request for company: Dunder Mifflin and shipment id: YfySIN38FR 
-Received Update Shipment request for company: Dunder Mifflin and shipment id: OsIi3oGWZb 
+  <system-out><![CDATA[Received Update Shipment request for company: Dunder Mifflin and shipment id: MtskEbhfG4 
+Received Update Shipment request for company: Dunder Mifflin and shipment id: edUnL7Emf4 
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

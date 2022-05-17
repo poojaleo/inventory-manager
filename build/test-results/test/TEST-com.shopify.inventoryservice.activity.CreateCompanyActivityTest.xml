@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.shopify.inventoryservice.activity.CreateCompanyActivityTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2022-05-17T01:58:08" hostname="Poojas-MacBook-Pro.local" time="0.017">
+<testsuite name="com.shopify.inventoryservice.activity.CreateCompanyActivityTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2022-05-17T04:40:25" hostname="Poojas-MacBook-Pro.local" time="0.018">
   <properties/>
-  <testcase name="handleRequest_createsCompanyNameAlreadyExists_throwsCompanyNameAlreadyExistsException()" classname="com.shopify.inventoryservice.activity.CreateCompanyActivityTest" time="0.008"/>
-  <testcase name="handleRequest_createsCompanyWithInvalidPassword_throwsInvalidAttributeValueException()" classname="com.shopify.inventoryservice.activity.CreateCompanyActivityTest" time="0.004"/>
+  <testcase name="handleRequest_createsCompanyNameAlreadyExists_throwsCompanyNameAlreadyExistsException()" classname="com.shopify.inventoryservice.activity.CreateCompanyActivityTest" time="0.007"/>
+  <testcase name="handleRequest_createsCompanyWithInvalidPassword_throwsInvalidAttributeValueException()" classname="com.shopify.inventoryservice.activity.CreateCompanyActivityTest" time="0.003"/>
   <testcase name="handleRequest_createValidCompany_returnsValidCreateCompanyResponse()" classname="com.shopify.inventoryservice.activity.CreateCompanyActivityTest" time="0.003"/>
-  <testcase name="handleRequest_createsCompanyWithInvalidEmailAddress_throwsInvalidAttributeValueException()" classname="com.shopify.inventoryservice.activity.CreateCompanyActivityTest" time="0.001"/>
+  <testcase name="handleRequest_createsCompanyWithInvalidEmailAddress_throwsInvalidAttributeValueException()" classname="com.shopify.inventoryservice.activity.CreateCompanyActivityTest" time="0.002"/>
   <system-out><![CDATA[Received Create Company Requests for companyName: Dunder Mifflin
 Received Create Company Requests for companyName: Dunder Mifflin
 Received Create Company Requests for companyName: Dunder Mifflin

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.shopify.inventoryservice.activity.UndeleteProductActivityTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-05-17T01:58:08" hostname="Poojas-MacBook-Pro.local" time="0.008">
+<testsuite name="com.shopify.inventoryservice.activity.UndeleteProductActivityTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-05-17T04:40:25" hostname="Poojas-MacBook-Pro.local" time="0.008">
   <properties/>
-  <testcase name="handleRequest_skuNotInDatabase_throwsProductNotFoundException()" classname="com.shopify.inventoryservice.activity.UndeleteProductActivityTest" time="0.002"/>
+  <testcase name="handleRequest_skuNotInDatabase_throwsProductNotFoundException()" classname="com.shopify.inventoryservice.activity.UndeleteProductActivityTest" time="0.003"/>
   <testcase name="handleRequest_undeleteSku_returnsUndeletedProductResponse()" classname="com.shopify.inventoryservice.activity.UndeleteProductActivityTest" time="0.005"/>
   <system-out><![CDATA[Received Delete Product request for company: Dunder Mifflin and sku: DM002 
 Received Delete Product request for company: Dunder Mifflin and sku: DM001 

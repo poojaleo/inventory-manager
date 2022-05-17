@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.shopify.inventoryservice.activity.GetShipmentActivityTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-05-17T01:58:08" hostname="Poojas-MacBook-Pro.local" time="0.11">
+<testsuite name="com.shopify.inventoryservice.activity.GetShipmentActivityTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-05-17T04:40:25" hostname="Poojas-MacBook-Pro.local" time="0.108">
   <properties/>
-  <testcase name="handleRequest_shipmentIdNotInDatabase_throwsShipmentNotFoundException()" classname="com.shopify.inventoryservice.activity.GetShipmentActivityTest" time="0.104"/>
+  <testcase name="handleRequest_shipmentIdNotInDatabase_throwsShipmentNotFoundException()" classname="com.shopify.inventoryservice.activity.GetShipmentActivityTest" time="0.102"/>
   <testcase name="handleRequest_shipmentIdInDatabase_returnsShipmentModel()" classname="com.shopify.inventoryservice.activity.GetShipmentActivityTest" time="0.005"/>
-  <system-out><![CDATA[Received Get Shipment Request for company:Dunder Mifflin and shipment id: 59dY40RNAu
-Received Get Shipment Request for company:Dunder Mifflin and shipment id: 9szoft4MVv
+  <system-out><![CDATA[Received Get Shipment Request for company:Dunder Mifflin and shipment id: 6AuaASkZmf
+Received Get Shipment Request for company:Dunder Mifflin and shipment id: EZ6NMdLYvI
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

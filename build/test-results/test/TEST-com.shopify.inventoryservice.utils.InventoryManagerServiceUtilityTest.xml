@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.shopify.inventoryservice.utils.InventoryManagerServiceUtilityTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2022-05-17T01:58:09" hostname="Poojas-MacBook-Pro.local" time="0.019">
+<testsuite name="com.shopify.inventoryservice.utils.InventoryManagerServiceUtilityTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2022-05-17T04:40:26" hostname="Poojas-MacBook-Pro.local" time="0.017">
   <properties/>
-  <testcase name="isValidEmailAddress_emptyString_returnsFalse()" classname="com.shopify.inventoryservice.utils.InventoryManagerServiceUtilityTest" time="0.008"/>
-  <testcase name="isValidEmailAddress_validEmailAddress_returnsTrue()" classname="com.shopify.inventoryservice.utils.InventoryManagerServiceUtilityTest" time="0.001"/>
+  <testcase name="isValidEmailAddress_emptyString_returnsFalse()" classname="com.shopify.inventoryservice.utils.InventoryManagerServiceUtilityTest" time="0.002"/>
+  <testcase name="isValidEmailAddress_validEmailAddress_returnsTrue()" classname="com.shopify.inventoryservice.utils.InventoryManagerServiceUtilityTest" time="0.007"/>
   <testcase name="isValidPassword_invalidPassword_returnsFalse()" classname="com.shopify.inventoryservice.utils.InventoryManagerServiceUtilityTest" time="0.001"/>
-  <testcase name="isValidPassword_validPassword_returnsTrue()" classname="com.shopify.inventoryservice.utils.InventoryManagerServiceUtilityTest" time="0.003"/>
+  <testcase name="isValidPassword_validPassword_returnsTrue()" classname="com.shopify.inventoryservice.utils.InventoryManagerServiceUtilityTest" time="0.001"/>
   <testcase name="isValidEmailAddress_invalidEmailAddress_returnsFalse()" classname="com.shopify.inventoryservice.utils.InventoryManagerServiceUtilityTest" time="0.001"/>
   <testcase name="isValidPassword_emptyString_returnsFalse()" classname="com.shopify.inventoryservice.utils.InventoryManagerServiceUtilityTest" time="0.0"/>
   <testcase name="generateId_returnsRandomTenCharacterString()" classname="com.shopify.inventoryservice.utils.InventoryManagerServiceUtilityTest" time="0.001"/>

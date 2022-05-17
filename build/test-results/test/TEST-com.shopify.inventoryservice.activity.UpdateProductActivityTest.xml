@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.shopify.inventoryservice.activity.UpdateProductActivityTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-05-17T01:58:08" hostname="Poojas-MacBook-Pro.local" time="0.014">
+<testsuite name="com.shopify.inventoryservice.activity.UpdateProductActivityTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-05-17T04:40:25" hostname="Poojas-MacBook-Pro.local" time="0.015">
   <properties/>
-  <testcase name="handleRequest_withQuantityLessThanZero_throwsInvalidAttributeValueException()" classname="com.shopify.inventoryservice.activity.UpdateProductActivityTest" time="0.004"/>
+  <testcase name="handleRequest_withQuantityLessThanZero_throwsInvalidAttributeValueException()" classname="com.shopify.inventoryservice.activity.UpdateProductActivityTest" time="0.005"/>
   <testcase name="handleRequest_updateQuantity_returnsUpdatedProductResponse()" classname="com.shopify.inventoryservice.activity.UpdateProductActivityTest" time="0.005"/>
   <testcase name="handleRequest_withCostLessThanZero_throwsInvalidAttributeValueException()" classname="com.shopify.inventoryservice.activity.UpdateProductActivityTest" time="0.002"/>
   <system-out><![CDATA[Received Update Product request for company: Dunder Mifflin and sku: DM001 

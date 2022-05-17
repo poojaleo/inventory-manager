@@ -7,7 +7,7 @@ It also helps to create shipment orders and keep track of all shipments at one p
 
 ### Live Project Preview:
 
-[Inventory Manager Application](link)
+[Inventory Manager Application](https://main.d2tsc03xo6nb5v.amplifyapp.com/)
 
 #### For Testing, You can use dummy account to login
     Username: Pepsico
@@ -19,7 +19,7 @@ Note: There is a 2-3 seconds latency to establish a connection.
 * Java, DynamoDB, AWS S3, AWS Lambda, AWS API Gateway, React, Bootstrap, AWS Amplify (for hosting)
 
 ## API Documentation
-[InventoryManager API Documentation](Link)
+[InventoryManager API Documentation](http://invmanager-swagger.s3-website-us-west-2.amazonaws.com/#post-/company)
 
 ## 1. Problem Statement
 
@@ -62,11 +62,15 @@ U8. *As a InventoryManager customer, I want to update shipment (tracking number,
 U8. *As a InventoryManager customer, I want to update status of shipment using dropdown menu*
 
 
-# 4. Proposed Architecture Overview
+# 4. Architecture Overview
+
+Deployed a serverless app using DynamoDB, AWS Lambda & API Gateway with 13 endpoints to handle CRUD requests.
+•	Utilized Lambda Logger to maintain logs and to debug.
+
 
 ![Architecture Overview](src/resources/images/AWSArchitecture.png)
 
-We will use API Gateway and Lambda to create 13 endpoints
+13 endpoints are
 ( `CreateCompany`, `GetCompany`,  `CreateProduct`, `UpdateProduct`, `GetProduct`,
 `GetAllActiveProduct`, `GetAllInactiveProduct`,  `DeleteProduct`, `UndeleteProduct`,
 `CreateShipment`, `UpdateShipment`, `GetShipment`, `GetAllShipment`) that will handle the
@@ -287,3 +291,5 @@ productsShipped // string, MapConverter
 
 ```
 
+# 7. Test Cases
+Wrote 61 JUnit tests using mocking framework (Mockito).

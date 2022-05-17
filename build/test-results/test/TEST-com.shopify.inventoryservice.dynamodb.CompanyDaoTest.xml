@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.shopify.inventoryservice.dynamodb.CompanyDaoTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-05-17T01:58:09" hostname="Poojas-MacBook-Pro.local" time="0.009">
+<testsuite name="com.shopify.inventoryservice.dynamodb.CompanyDaoTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-05-17T04:40:26" hostname="Poojas-MacBook-Pro.local" time="0.008">
   <properties/>
   <testcase name="getCompany_validCompanyName_returnsCompany()" classname="com.shopify.inventoryservice.dynamodb.CompanyDaoTest" time="0.004"/>
-  <testcase name="saveCompany_validCompany_returnsCompany()" classname="com.shopify.inventoryservice.dynamodb.CompanyDaoTest" time="0.002"/>
+  <testcase name="saveCompany_validCompany_returnsCompany()" classname="com.shopify.inventoryservice.dynamodb.CompanyDaoTest" time="0.001"/>
   <testcase name="getCompany_companyNameNotInDatabase_throwsCompanyNotFoundException()" classname="com.shopify.inventoryservice.dynamodb.CompanyDaoTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

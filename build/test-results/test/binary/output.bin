@@ -12,8 +12,8 @@
 LReceived Delete Product request for company: Dunder Mifflin and sku: DM002 
 >Received Get Company Request for company name: Dunder Mifflin
 7Received Get Company Request for company name: Mifflin
-UReceived Get Shipment Request for company:Dunder Mifflin and shipment id: 59dY40RNAu
-UReceived Get Shipment Request for company:Dunder Mifflin and shipment id: 9szoft4MVv
+UReceived Get Shipment Request for company:Dunder Mifflin and shipment id: 6AuaASkZmf
+UReceived Get Shipment Request for company:Dunder Mifflin and shipment id: EZ6NMdLYvI
 LReceived Update Product request for company: Dunder Mifflin and sku: DM001 
 LReceived Update Product request for company: Dunder Mifflin and sku: DM001 
 LReceived Update Product request for company: Dunder Mifflin and sku: DM001 
@@ -27,7 +27,7 @@
 "$AReceived Create Company Requests for companyName: Dunder Mifflin
 "$=CompanyName does not exist. New company creation in progress
 "%AReceived Create Company Requests for companyName: Dunder Mifflin
-'&ZReceived Update Shipment request for company: Dunder Mifflin and shipment id: YfySIN38FR 
-'(ZReceived Update Shipment request for company: Dunder Mifflin and shipment id: OsIi3oGWZb 
+'&ZReceived Update Shipment request for company: Dunder Mifflin and shipment id: MtskEbhfG4 
+'(ZReceived Update Shipment request for company: Dunder Mifflin and shipment id: edUnL7Emf4 
 *)LReceived Delete Product request for company: Dunder Mifflin and sku: DM002 
 *+LReceived Delete Product request for company: Dunder Mifflin and sku: DM001 

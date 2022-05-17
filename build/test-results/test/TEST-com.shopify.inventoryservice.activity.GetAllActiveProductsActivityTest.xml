@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.shopify.inventoryservice.activity.GetAllActiveProductsActivityTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-05-17T01:58:08" hostname="Poojas-MacBook-Pro.local" time="0.011">
+<testsuite name="com.shopify.inventoryservice.activity.GetAllActiveProductsActivityTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-05-17T04:40:25" hostname="Poojas-MacBook-Pro.local" time="0.012">
   <properties/>
   <testcase name="handleRequest_companyHasZeroActiveProducts_returnsEmptyList()" classname="com.shopify.inventoryservice.activity.GetAllActiveProductsActivityTest" time="0.005"/>
   <testcase name="handleRequest_companyHasTwoActiveProducts_returnsTwoActiveProducts()" classname="com.shopify.inventoryservice.activity.GetAllActiveProductsActivityTest" time="0.004"/>

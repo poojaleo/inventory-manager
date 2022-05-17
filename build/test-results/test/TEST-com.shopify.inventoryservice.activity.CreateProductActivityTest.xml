@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.shopify.inventoryservice.activity.CreateProductActivityTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2022-05-17T01:58:08" hostname="Poojas-MacBook-Pro.local" time="0.039">
+<testsuite name="com.shopify.inventoryservice.activity.CreateProductActivityTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2022-05-17T04:40:25" hostname="Poojas-MacBook-Pro.local" time="0.043">
   <properties/>
-  <testcase name="handleRequest_createValidProduct_returnsValidCreateProductResponse()" classname="com.shopify.inventoryservice.activity.CreateProductActivityTest" time="0.02"/>
-  <testcase name="handleRequest_skuAlreadyExist_throwsProductAlreadyExistsException()" classname="com.shopify.inventoryservice.activity.CreateProductActivityTest" time="0.005"/>
+  <testcase name="handleRequest_createValidProduct_returnsValidCreateProductResponse()" classname="com.shopify.inventoryservice.activity.CreateProductActivityTest" time="0.025"/>
+  <testcase name="handleRequest_skuAlreadyExist_throwsProductAlreadyExistsException()" classname="com.shopify.inventoryservice.activity.CreateProductActivityTest" time="0.006"/>
   <testcase name="handleRequest_withQuantityLessThanZero_throwsInvalidAttributeValueException()" classname="com.shopify.inventoryservice.activity.CreateProductActivityTest" time="0.005"/>
-  <testcase name="handleRequest_withCostLessThanZero_throwsInvalidAttributeValueException()" classname="com.shopify.inventoryservice.activity.CreateProductActivityTest" time="0.002"/>
+  <testcase name="handleRequest_withCostLessThanZero_throwsInvalidAttributeValueException()" classname="com.shopify.inventoryservice.activity.CreateProductActivityTest" time="0.001"/>
   <system-out><![CDATA[Received Create Product Request for company:Dunder Mifflin
 Product does not exist. New Product creation in progress
 Received Create Product Request for company:Dunder Mifflin
