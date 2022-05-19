@@ -1,8 +1,8 @@
 # Shopify Inventory Manager Design Document
 
 # Inventory Manager
-Inventory is an effective way to manage all your inventory and shipping. It helps to keep track of all the active and inactive products. 
-It also helps to create shipment orders and keep track of all shipments at one place.
+Inventory Manager is an effective way to manage all your inventory and shipping. It helps to keep track of all the active and inactive products. 
+Users can create new shipment orders and keep track of all the shipments at one place.
 
 
 ### Live Project Preview:
