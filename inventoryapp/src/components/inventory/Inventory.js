@@ -10,6 +10,7 @@ import CreateInventoryModal from "./CreateInventoryModal";
 import InactiveProductsListModal from "./InactiveProductsListModal";
 import GoToShippingButton from "../shipping/GoToShippingButton";
 import DeleteInventoryModal from "./DeleteInventoryModal";
+import "./inventory.css";
 
 const Inventory = (props) => {
     const [companyName, setCompanyName] = useState("");

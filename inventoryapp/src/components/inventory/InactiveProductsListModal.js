@@ -2,6 +2,7 @@ import {Button, Modal, Stack, Table} from "react-bootstrap";
 import React from "react";
 import AuthService from "../../services/AuthService";
 import axios from "axios";
+import './inventory.css';
 
 
 const InactiveProductsListModal = (show, handleClose, inactiveProducts) => {
@@ -36,7 +37,7 @@ const InactiveProductsListModal = (show, handleClose, inactiveProducts) => {
     })
 
     return (
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleClose} dialogClassName={"modal-dimensions"}>
             <Modal.Header closeButton>
                 <Modal.Title>
                     <Stack direction={"horizontal"} gap={2}>
@@ -45,13 +46,13 @@ const InactiveProductsListModal = (show, handleClose, inactiveProducts) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Table bordered hover>
+                <Table bordered hover >
                     <thead>
-                    <th>SKU</th>
-                    <th>Name</th>
-                    <th>Quantity</th>
-                    <th>Cost</th>
-                    <th>Comment</th>
+                    <th width={"15%"}>SKU</th>
+                    <th width={"20%"}>Name</th>
+                    <th width={"10%"}>Quantity</th>
+                    <th width={"10%"}>Cost</th>
+                    <th width={"15%"}>Comment</th>
                     <th>Action</th>
                     </thead>
                     <tbody>
