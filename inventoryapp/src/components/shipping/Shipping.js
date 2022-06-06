@@ -134,7 +134,11 @@ const Shipping = (props) => {
 
     const handleRemoveProduct = (index) => {
         const values = [...addProductToBeShipped];
-        values.splice(index, 1);
+        console.log(index);
+        console.log(values);
+        const removed = values.splice(index, 1);
+        console.log(removed);
+        console.log(values);
         setAddProductToBeShipped(values);
     }
 
@@ -149,7 +153,7 @@ const Shipping = (props) => {
         return (
             <div className={"form-inline"} key={index}>
                 <Label>SKU</Label>
-                <select className={"mx-3 p-2"} name={"sku"} onChange={event => handleInputChange(index, event)}>
+                <select className={"mx-3 p-2"} value={element.sku || ""} name={"sku"} onChange={event => handleInputChange(index, event)}>
                     <option  disabled selected value> -- select an option -- </option>
                     {activeProductsList.map(({sku, quantity}, index) => <option key={sku} value={sku}>{sku} - Available: {quantity}</option>)}
                 </select>
